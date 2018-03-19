@@ -1,4 +1,30 @@
-<!DOCTYPE html>
+<?php
+
+    include_once("classes/User.class.php");
+
+    if(!empty($_POST)){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $user = new User();
+        $user->setEmail($email);
+        $user->setPassword($password);
+        if($user->Loginfunc()){
+            $user->login();
+        }
+        else{
+
+            $error=true;
+
+        }
+
+    }
+
+
+
+
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
