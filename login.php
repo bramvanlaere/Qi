@@ -9,11 +9,12 @@
         $user = new User();
         $user->setEmail($email);
         $user->setPassword($password);
-        if($user->Loginfunc()){
+        if($user->canLogin()){
+            echo "ye";
             $user->login();
         }
         else{
-
+            echo "no";
             $error=true;
 
         }

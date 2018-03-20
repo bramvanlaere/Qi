@@ -45,20 +45,23 @@ class User{
         if(strlen($password)<8){
             throw new exception("Password must be at least 8 characters long.");
         }
-        $hash = password_hash($password,PASSWORD_DEFAULT);
-        $this->password = $hash;
 
         return $this;
     }
 
-    public function register(){
+    private function hashPassword(){
+        $hash = password_hash($this->password,PASSWORD_DEFAULT);
+        return $hash;
 
-    $conn = new PDO('mysql:host=localhost;dbname=qi','root','');
+    }
+
+    public function register(){
+    $conn = Db::getInstance();
 
         // query (insert)
         $statement = $conn->prepare("insert into users(email,password,firstname,lastname) values(:email,:password,:firstname,:lastname)");
         $statement->bindParam(':email',$this->email);
-        $statement->bindParam(':password',$this->password);
+        $statement->bindParam(':password',$this->hashPassword());
         $statement->bindParam(':firstname',$this->firstname);
         $statement->bindParam(':lastname',$this->lastname);
 
@@ -119,10 +122,10 @@ class User{
     }
 
 
-    public function Loginfunc()
+    public function canLogin()
     {
-        $password = $this->password;
-        $conn = new PDO('mysql:host=localhost;dbname=qi','root','');
+        $password = $this->getPassword();
+        $conn=Db::getInstance();
         $q = "select * from users where email = :email";
         $statement = $conn->prepare($q);
         $statement->bindParam(":email",$this->email);
