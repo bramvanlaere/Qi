@@ -15,10 +15,13 @@ if( !empty($_POST) ) {
         $user->setLastname($_POST['lastname']);
         if($user->register()){
             $user->login();
+        } else{
+            $feedback = "Something went wrong.";
         }
+        
     }
-}
 
+ }
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,19 +29,69 @@ if( !empty($_POST) ) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Signup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 <body>
+    <div class="container">
+        <h2>Register</h2>
+        <div class="feedback">
+            <!--<p><?php echo $feedback; ?></p>-->
+        </div>
+        <form action="" method="POST">
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email">
+                    </div>
+            </div>
 
-<h2>SignUp</h2>
+  <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                         Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                    </small>
+            </div>
+    </div>
 
-<form action="" method="post">
-    <input type="text" id="firstname" name="firstname" placeholder ="firstname">
-    <input type="text" id="lastname" name="lastname" placeholder="lastname">
-    <input type="text" id="email" name="email" placeholder="Email">
-    <input type="text" id="password" name="password" placeholder="Password">
-    <input type="text" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
-    <input type="submit" id="submit" value="Register">
-</form>
+    <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Confirm password" name="password_confirmation">
+            </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputFirstname3" class="col-sm-2 col-form-label">Firstname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputFirstname3" placeholder="Firstname" name="firstname">
+            </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputLastname3" class="col-sm-2 col-form-label">lastname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputLastname3" placeholder="Lastname" name="lastname">
+            </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+  </div>
+
+
+        </form>
+</div>
+
+
+
 
 </body>
 </html>
