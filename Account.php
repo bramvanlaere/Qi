@@ -16,7 +16,7 @@
 <div class="changePassword">
 <form action="" method="POST">
 <input type="text" name="newPassword" id="newPassword" placeholder="give new password.">
-<input type="text" name="newPassword_confirmation" id="newPassword_confirmation" placeholder="Repeat new password.">
+<input type="text" name="oldPassword" id="oldPassword" placeholder="give old password.">
 <input type="submit">
 </form>
 </div>
