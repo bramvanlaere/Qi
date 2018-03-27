@@ -1,4 +1,33 @@
-<!doctype html>
+<?php
+    include_once ('classes/Db.class.php');
+    include_once ('classes/Post.class.php');
+    session_start();
+        if(isset($_SESSION['loggedin'])){
+
+            if(!empty($_POST)){
+
+                $besch=$_POST["besch"];
+
+                $p = new Post();
+                $p->moveImage();
+                $p->setBesch($besch);
+                $p->savePost();
+            }
+
+
+        }
+        else{
+            header('Location: login.php');
+        }
+
+
+
+
+
+
+
+
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +37,21 @@
     <title>New upload</title>
 </head>
 <body>
+<h2>Upload an image</h2>
+<div class="form">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+        <input type="file"  name="file" id="fileUpload" />
+        <br>
+        <textarea id="beschrijving" rows="5" cols="40" name="besch" id="comment"></textarea>
+        <br />
 
+        <input type="submit" name="submit" value="upload!" />
+
+        <?php
+        if( isset($error) ) {
+            echo "<p class='error'>$error</p>";
+        }
+        ?>
+    </form>
 </body>
 </html>

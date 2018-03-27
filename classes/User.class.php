@@ -56,7 +56,7 @@ class User{
     }
 
     public function register(){
-    $conn = Db::getInstance();
+        $conn = Db::getInstance();
 
         // query (insert)
         $statement = $conn->prepare("insert into users(email,password,firstname,lastname) values(:email,:password,:firstname,:lastname)");
@@ -78,11 +78,16 @@ class User{
     public function login(){
         session_start();
         $_SESSION['loggedin'] = true;
+        $_SESSION['user']= $this->email;
         header('Location: index.php');
     }
 
 
+<<<<<<< HEAD
+
+=======
    
+>>>>>>> origin/master
 
     /**
      * Get the value of firstname
@@ -137,13 +142,13 @@ class User{
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         $hash = $user['password'];
 
-            if ( password_verify($password, $hash)) {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        if ( password_verify($password, $hash)) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
 
     }
