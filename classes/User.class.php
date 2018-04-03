@@ -83,11 +83,6 @@ class User{
     }
 
 
-<<<<<<< HEAD
-
-=======
-   
->>>>>>> origin/master
 
     /**
      * Get the value of firstname
@@ -152,6 +147,9 @@ class User{
 
 
     }
+
+
+
 
 
 
