@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 27 mrt 2018 om 11:08
+-- Gegenereerd op: 16 apr 2018 om 09:57
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -29,19 +29,31 @@ SET time_zone = "+00:00";
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `filelocation` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `besch` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
+  `besch` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `posts`
 --
 
-INSERT INTO `posts` (`id`, `filelocation`, `besch`) VALUES
-(11, 'files/bram@vanlaere.org-1522069554.jpg', 'Los angeles california bitches'),
-(12, 'files/bram@vanlaere.org-1522069654.jpg', 'GEEF MIJ MAAAR BIER '),
-(13, 'files/bram@vanlaere.org-1522069809.jpg', 'New york baby'),
-(14, 'files/bram@vanlaere.org-1522069857.jpg', 'nog iis new york'),
-(15, 'files/bram@bram.co-1522141383.jpg', 'squad');
+INSERT INTO `posts` (`id`, `filelocation`, `besch`, `user`) VALUES
+(39, 'files/vanlaere@bram.com-1523612954.jpg', 'off white webdesign !', 'vanlaere@bram.com'),
+(40, 'files/vanlaere@bram.com-1523612982.jpg', 'jaden smith kleding lijn !', 'vanlaere@bram.com'),
+(43, 'files/vanlaere@bram.com-1523613062.jpg', 'design van soho house !', 'vanlaere@bram.com'),
+(44, 'files/vanlaere@bram.com-1523613282.jpg', 'nieuwe aanwinst !', 'vanlaere@bram.com'),
+(45, 'files/vanlaere@bram.com-1523613302.jpg', 'shoot 1', 'vanlaere@bram.com'),
+(46, 'files/vanlaere@bram.com-1523613316.jpg', 'shoot 2', 'vanlaere@bram.com'),
+(47, 'files/vanlaere@bram.com-1523613445.jpg', 'amazon icoon !', 'vanlaere@bram.com'),
+(48, 'files/vanlaere@bram.com-1523613487.jpg', 'zonnige dag !', 'vanlaere@bram.com'),
+(49, 'files/vanlaere@bram.com-1523613509.jpg', 'dubai !', 'vanlaere@bram.com'),
+(50, 'files/vanlaere@bram.com-1523613538.jpg', 'yeezys in santa monica !', 'vanlaere@bram.com'),
+(51, 'files/vanlaere@bram.com-1523613552.jpg', 'water !', 'vanlaere@bram.com'),
+(52, 'files/vanlaere@bram.com-1523613566.jpg', 'route 66 !', 'vanlaere@bram.com'),
+(53, 'files/vanlaere@bram.com-1523613613.jpg', 'chilling !', 'vanlaere@bram.com'),
+(54, 'files/vanlaere@bram.com-1523613640.jpg', 'kerst !', 'vanlaere@bram.com'),
+(55, 'files/vanlaere@bram.com-1523613673.jpg', 'Los Angeles ! #flex', 'vanlaere@bram.com'),
+(56, 'files/vanlaere@bram.com-1523620031.jpg', 'test', 'vanlaere@bram.com');
 
 -- --------------------------------------------------------
 
@@ -98,7 +110,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --

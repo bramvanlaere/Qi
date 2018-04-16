@@ -42,7 +42,7 @@ class User{
     public function setPassword($password)
     {
 
-        if(strlen($password)<=8){
+        if(strlen($password)<8){
             throw new exception("Password must be at least 8 characters long.");
         }
 

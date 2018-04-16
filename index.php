@@ -30,8 +30,8 @@
     <?php $statement=$conn->prepare($q);?>
     <?php $statement->execute();?>
     <?php while ($res = $statement->fetch(PDO::FETCH_ASSOC)):?>
-
-        <img style="height: 400px;width: 450px;" src="<?php echo $res['filelocation']?>" alt="">
+        <h2><a href="#"><?php echo $res['user']?></a></h2>
+        <img src="<?php echo $res['filelocation']?>" alt="">
         <p><?php echo $res['besch']?></p>
 
 
