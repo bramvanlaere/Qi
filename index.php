@@ -1,14 +1,6 @@
 <?php
     include_once ("classes/Db.class.php");
-    session_start();
-        if(isset($_SESSION['loggedin'])){
-
-
-
-        }
-        else{
-            header('Location: login.php');
-        }
+    include_once ("includes/session.inc.php");
 
 
 ?><!DOCTYPE html>
@@ -23,6 +15,8 @@
 
 <h2>Welcome</h2>
 <a href="friendlist.php">current friends</a>
+
+<h2><?php echo $_SESSION['userid'];?></h2>
 
 <div class="content">
     <?php $conn=Db::getInstance(); // voor het moment is de feedhardcoded samen met de friendlist deze gaat nog naar oop omgezetworden ?>
