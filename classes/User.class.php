@@ -6,6 +6,7 @@ class User{
     private $firstname;
     private $lastname;
 
+
     /**
      * Get the value of email
      */
@@ -51,7 +52,9 @@ class User{
 
     private function hashPassword(){
         $hash = password_hash($this->password,PASSWORD_DEFAULT);
+
         return $hash;
+
 
     }
 
@@ -81,6 +84,8 @@ class User{
         $_SESSION['user']= $this->email;
         header('Location: index.php');
     }
+
+
 
 
 

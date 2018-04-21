@@ -21,7 +21,8 @@
 </head>
 <body>
 
-<h2>Welcome</h2>
+<h2>Welcome></h2>
+<a href="Account.php">Account</a>
 <a href="friendlist.php">current friends</a>
 
 <div class="content">

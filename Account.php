@@ -1,10 +1,15 @@
 <?php
  include_once("classes/User.class.php");
 
+session_start();
+if(isset($_SESSION['loggedin'])){
 
 
 
-
+}
+else{
+    header('Location: login.php');
+}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,14 +90,14 @@
         <div class="form-group row">
             <label for="inputNewPassword3" class="col-sm-2 col-form-label">Confirm new password:</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputNewPassword3" placeholder="New password" name="confirmPassword">
+                <input type="password" class="form-control" id="inputNewPassword3" placeholder="New password" name="confirmNewPassword">
             </div>
         </div>
 
         <div class="form-group row">
             <label for="inputPassword3" class="col-sm-2 col-form-label">Give old password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="oldPassword">
             </div>
         </div>
 
