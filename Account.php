@@ -1,15 +1,10 @@
 <?php
  include_once("classes/User.class.php");
+ include_once("classes/Db.class.php");
 
 session_start();
-if(isset($_SESSION['loggedin'])){
 
 
-
-}
-else{
-    header('Location: login.php');
-}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +25,7 @@ else{
     <div class="feedback">
         <!--<p><?php echo $feedback; ?></p>-->
     </div>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="classes/User.class.php" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="inputAvatar3" class="col-sm-2 col-form-label">Choose new avatar:</label>
             <div class="col-sm-10">

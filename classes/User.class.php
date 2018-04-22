@@ -275,6 +275,36 @@ class User{
         $statement->execute();
     }
 
+    public function Avatar($avatar){
+
+        if (file_exists($avatar)){
+           $src_size = getimagesize($avatar);
+
+           if ($src_size['mime'] === 'image/jpeg'){
+               $src_img = imagecreatefromjpeg($avatar);
+           } elseif ($src_size['mime'] === 'image/png'){
+               $src_img = imagecreatefrompng($avatar);
+           } elseif ($src_size['mime'] === 'image/gif'){
+               $src_img = imagecreatefromgif($avatar);
+           } else{
+               $src_img = false;
+           }
+        }
+        if ($src_img !== false){
+            $thumb_width = 200;
+
+            if($src_size[0] <= $thumb_width){
+                $thumb = $src_img;
+            } else{
+                $new_size[0] = $thumb_width;
+                $new_size[1] = ($src_size[1] / $src_size[0]) * $thumb_width;
+
+                $thumb = imagecreatetruecolor($new_size[0],$new_size[1]);
+                imagecopyresampled($thumb,$src_img,0,0,0,0, $new_size[0],$new_size[1],$src_size[0],$src_size[1]);
+            }
+            imagejpeg($thumb,"{$GLOBALS['path']}/avatars/{$_SESSION['id']}.jpg");
+        }
+    }
 
 
 
@@ -286,3 +316,4 @@ class User{
 
 
 }
+echo "test";

@@ -4,6 +4,8 @@ include_once ("classes/User.class.php");
 
 
 
+
+
 /*$showavatar = new User();
 $showavatar->showAvatar();*/
 
@@ -81,6 +83,19 @@ if(!empty($_POST)){
      }*/
     }
 
+    // avatar uploaden, code zou moeten werken maar geeft om 1 of andere reden een undefined function terwijl deze in de include user class staat.
+
+    if (empty($_FILES['avatar']['tmp_name'])=== false){
+    $file_ext = end(explode('.',$_FILES['avatar']['name']));
+
+    if (in_array(strtolower($file_ext),array('jpg','jpeg','png','gif'))===false){
+        $errors[] = 'your avatar must be an image.';
+    }
+    }
+
+    if (empty($errors)){
+        Avatar((empty($_FILES['avatar']['tmp_name']))? false : $_FILES['avatar']['tmp_name']);
+    }
 
 
 
@@ -107,9 +122,9 @@ if(!empty($_POST)){
         <img class="avatar" src="<?php echo $_SESSION['avatar']; ?>" alt="avatar">
 
         <form class="formUpload" action="" enctype="multipart/form-data" method="post">
-            <label for="file">Avatar uploaden:</label>
+            <label for="avatar">Avatar uploaden:</label>
 
-            <input type="file" name="file" id="file">
+            <input type="file" name="avatar" id="avatar">
 
             <input class="btnUpload" type="submit" name="upload" value="Upload">
         </form>
