@@ -6,8 +6,8 @@ include_once ("classes/User.class.php");
 
 
 
-/*$showavatar = new User();
-$showavatar->showAvatar();*/
+$showavatar = new User();
+$showavatar->showAvatar();
 
 if(!empty($_POST)){
     if(isset($_POST['update'])){
@@ -61,41 +61,17 @@ if(!empty($_POST)){
         }
      }
 
-     /*if(isset($_POST['upload'])){
-         if ($_FILES["file"]["error"] > 0)
-         {
-             //for error messages: see http://php.net/manual/en/features.fileupload.errors.php
-             switch($_FILES["file"]["error"])
-             {
-                 case 1:
-                     $errorImage = "We are sorry. Your file is too big(Max. 2mb)";
-                     break;
-                 default:
-                     $errorImage = "Woops, uploading failed.";
-             }
-         }
-         else
-         {
+    /*avatar uploaden aan de hand van img*/
+     if(isset($_POST['upload'])){
+
              $p = new User();
              $p->moveAvatar();
              $p->saveAvatar();
-         }
-     }*/
+
+     }
     }
 
-    // avatar uploaden, code zou moeten werken maar geeft om 1 of andere reden een undefined function terwijl deze in de include user class staat.
 
-    if (empty($_FILES['avatar']['tmp_name'])=== false){
-    $file_ext = end(explode('.',$_FILES['avatar']['name']));
-
-    if (in_array(strtolower($file_ext),array('jpg','jpeg','png','gif'))===false){
-        $errors[] = 'your avatar must be an image.';
-    }
-    }
-
-    if (empty($errors)){
-        Avatar((empty($_FILES['avatar']['tmp_name']))? false : $_FILES['avatar']['tmp_name']);
-    }
 
 
 
@@ -118,17 +94,22 @@ if(!empty($_POST)){
 
 <div class="editContainer">
     <div class="editDetails">
+
         <h1>Avatar uploaden</h1>
-        <img class="avatar" src="<?php echo $_SESSION['avatar']; ?>" alt="avatar">
+        <img class="avatar" style="height: 50px;
+	width: 50px;
+	border-radius: 50%;" src="<?php echo $_SESSION['avatar']; ?>" alt="avatar">
 
         <form class="formUpload" action="" enctype="multipart/form-data" method="post">
             <label for="avatar">Avatar uploaden:</label>
 
-            <input type="file" name="avatar" id="avatar">
+            <input type="file" name="file" id="avatar">
 
             <input class="btnUpload" type="submit" name="upload" value="Upload">
         </form>
         <?php echo $_SESSION['user'];?>
+
+
         <h1>Profiel bewerken</h1>
 
         <form class="formDetails formPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">

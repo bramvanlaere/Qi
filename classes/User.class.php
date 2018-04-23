@@ -8,6 +8,23 @@ class User{
     private $editemail;
     private $editbio;
     private $editpassword;
+    private $filepath;
+
+    /**
+     * @return mixed
+     */
+    public function getFilepath()
+    {
+        return $this->filepath;
+    }
+
+    /**
+     * @param mixed $filepath
+     */
+    public function setFilepath($filepath)
+    {
+        $this->filepath = $filepath;
+    }
 
     /**
      * @return mixed
@@ -275,34 +292,33 @@ class User{
         $statement->execute();
     }
 
-    public function Avatar($avatar){
+    public function moveAvatar() {
+        $filename = $_FILES["file"]["tmp_name"];
+        $filepath = "avatars/" . $_SESSION['userid'] . "_avatar.jpg";
+        move_uploaded_file($filename, $filepath);
+        // nieuwe locatie opslaan in variabele voor de query
+        $this->filepath = $filepath;
+    }
 
-        if (file_exists($avatar)){
-           $src_size = getimagesize($avatar);
+    public function saveAvatar()
+    {
+        $conn=Db::getInstance();
+        $statement = $conn->prepare("update users set avatar = :avatar where id = '".$_SESSION['userid']."'");
+        $statement->bindValue(":avatar", $this->filepath);
+        $statement->execute();
 
-           if ($src_size['mime'] === 'image/jpeg'){
-               $src_img = imagecreatefromjpeg($avatar);
-           } elseif ($src_size['mime'] === 'image/png'){
-               $src_img = imagecreatefrompng($avatar);
-           } elseif ($src_size['mime'] === 'image/gif'){
-               $src_img = imagecreatefromgif($avatar);
-           } else{
-               $src_img = false;
-           }
-        }
-        if ($src_img !== false){
-            $thumb_width = 200;
+        $_SESSION['avatar'] = $this->filepath;
+    }
 
-            if($src_size[0] <= $thumb_width){
-                $thumb = $src_img;
-            } else{
-                $new_size[0] = $thumb_width;
-                $new_size[1] = ($src_size[1] / $src_size[0]) * $thumb_width;
+    public function showAvatar()
+    {
+        $conn=Db::getInstance();
+        $statement = $conn->prepare("select avatar from users where id = '".$_SESSION['userid']."'");
+        $statement->execute();
 
-                $thumb = imagecreatetruecolor($new_size[0],$new_size[1]);
-                imagecopyresampled($thumb,$src_img,0,0,0,0, $new_size[0],$new_size[1],$src_size[0],$src_size[1]);
-            }
-            imagejpeg($thumb,"{$GLOBALS['path']}/avatars/{$_SESSION['id']}.jpg");
+        if($statement->rowCount() == 1){
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['avatar'] = $result['avatar'];
         }
     }
 
@@ -316,4 +332,3 @@ class User{
 
 
 }
-echo "test";
