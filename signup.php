@@ -75,7 +75,7 @@ if( !empty($_POST) ) {
         </div>
 
         <div class="login">
-            <p>Already an account? Login <a href="login.php">Here</a> </p>
+            <p>Already an account? Login <a href="../Qi-master-9/login.php">Here</a> </p>
         </div>
 
     </form>

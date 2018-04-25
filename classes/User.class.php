@@ -372,8 +372,10 @@ class User{
 
     public function getFeed($userid){
         $friendsid=$this->getFriendId($userid);
+        $_SESSION['getal'] = 2;
         $conn=Db::getInstance();
-        $statement = $conn->prepare("select * from posts where imageuserid in (".implode(',', $friendsid).") order by id desc limit 20 ");
+        $statement = $conn->prepare("select * from posts where imageuserid in (".implode(',', $friendsid).") order by id desc limit :getal ");
+        $statement->bindValue(':getal',$_SESSION['getal'], PDO::PARAM_INT);
         $statement->execute();
         $results = $statement->fetchAll();
         return $results;
