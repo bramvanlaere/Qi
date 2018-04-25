@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 16 apr 2018 om 09:57
+-- Gegenereerd op: 20 apr 2018 om 18:49
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -53,7 +53,7 @@ INSERT INTO `posts` (`id`, `filelocation`, `besch`, `user`) VALUES
 (53, 'files/vanlaere@bram.com-1523613613.jpg', 'chilling !', 'vanlaere@bram.com'),
 (54, 'files/vanlaere@bram.com-1523613640.jpg', 'kerst !', 'vanlaere@bram.com'),
 (55, 'files/vanlaere@bram.com-1523613673.jpg', 'Los Angeles ! #flex', 'vanlaere@bram.com'),
-(56, 'files/vanlaere@bram.com-1523620031.jpg', 'test', 'vanlaere@bram.com');
+(60, 'files/test@olah.com-1524231925.jpg', 'this is a very nice test boy\r\n', 'test@olah.com');
 
 -- --------------------------------------------------------
 
@@ -65,6 +65,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bio` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -73,18 +75,14 @@ CREATE TABLE `users` (
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`) VALUES
-(1, 'thomaslaeremans@hotmail.com', '$2y$10$aR9jx3slNlqDWKTsMT342uFuBWAgKnrntE1omtplEi9yoNeIMLaSe', 'Thomas', 'Laeremans'),
-(2, 'kathy@me.com', '$2y$10$WbumBVFINdETcgNC5iUEXukTfhhcaJB/tUhjmzgnlTcbBwg5P2euS', 'kathy', 'arana'),
-(4, 'test@test.com', '$2y$10$/1VWlr5C1RmllUvWJS0yie96JZv4969siBIxsoxUzqmfX0DK8SstW', 'test', 'test'),
-(5, 'bram@vanlaere.com', '$2y$10$5MCu3XzqPkzu2uDZ5t7znOf1WjckmsSGLZOEtXSDYbWgXLdrYHjKG', 'bram', 'bram'),
-(6, 'bram@test.com', '$2y$12$02YGOkak9E38CAXMpwe0jO/O1TjyZQUdO9GnPWFkIL1DYwFsKGwXm', 'bram', 'bram'),
-(7, 'vanlaere@bram.com', '$2y$12$rFEJ3v128vZ1QiI.X/T87OrORG9gIh1EeY9D0zz1tyLSl2By0R02y', 'bram', 'van laere'),
-(8, 'joris@joris.com', '$2y$10$1JX1WR4g8//CRWc.aqmxmemPTItPa/9.uj9bXRvKwHDLliCSQA6uu', 'joris', 'joris'),
-(9, 'bram@lel.oe', '$2y$10$mEdKnokeoS8zEFIaBGuhkeRd3g7NNk/9.HbqmyCGyLInDjiPvZv2u', 'bram', 'bram'),
-(10, 'bram@vanlaere.org', '$2y$10$o9qNiiqx3EYFSJy31qScb.KmU62kOon7s2dif8r.LkyVeZLUoscbO', 'bram', 'van laere'),
-(11, 'abrahamvanlaere@lol.com', '$2y$10$nLdWnBaSiKdf3D3PMLpL5ezwUyrrOVgLDC2EQdxvi.B4645g2KjIa', 'bram', 'van laere'),
-(12, 'bram@bram.co', '$2y$10$e2pdaJNM4E79ukLBt54yt.E.MWaL4flmD.t2vd/5pH3JlzN05cUk6', 'bram', 'van laere');
+INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `bio`, `firstname`, `lastname`) VALUES
+(1, 'thomaslaeremans@hotmail.com', '$2y$10$aR9jx3slNlqDWKTsMT342uFuBWAgKnrntE1omtplEi9yoNeIMLaSe', '', '', 'Thomas', 'Laeremans'),
+(2, 'kathy@me.com', '$2y$10$WbumBVFINdETcgNC5iUEXukTfhhcaJB/tUhjmzgnlTcbBwg5P2euS', '', '', 'kathy', 'arana'),
+(4, 'test@test.com', '$2y$10$/1VWlr5C1RmllUvWJS0yie96JZv4969siBIxsoxUzqmfX0DK8SstW', '', '', 'test', 'test'),
+(5, 'joris@joris.com', '$2y$10$1JX1WR4g8//CRWc.aqmxmemPTItPa/9.uj9bXRvKwHDLliCSQA6uu', '', '', 'joris', 'joris'),
+(45, 'bram@bram.com', '$2y$12$w6CgLj9Xye7jPfECSeFns.5AA5Gc49e6t5cCJhOUo0aHbtWyV9Edu', '', '', 'test1234', 'test1234'),
+(46, 'olah@bram.com', '$2y$10$0f2THbS80vsmcAccEttEM.g0A3gAooEsTibuzLdC7guZmHamMfdjW', '', '', 'de', 'edede'),
+(48, 'bram@test4321.com', '$2y$12$8OTVtpuFdn7Du9D.5rm6MunRjMdgaty5Etbd2oXHm1b/z/UvuuxOu', '', 'alles werkt boy', 'dede', 'dedede');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -110,12 +108,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

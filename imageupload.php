@@ -37,6 +37,9 @@
     <title>New upload</title>
 </head>
 <body>
+
+<?php include_once("includes/nav.inc.php"); ?>
+
 <h2>Upload an image</h2>
 <div class="form">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">

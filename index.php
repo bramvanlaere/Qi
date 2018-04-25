@@ -1,14 +1,16 @@
 <?php
     include_once ("classes/Db.class.php");
-    session_start();
-        if(isset($_SESSION['loggedin'])){
+    include_once ("includes/session.inc.php");
+    include_once ("classes/User.class.php");
+
+    $userid = $_SESSION['userid'];
+    $f = new User();
+    $r=$f->getFeed($userid);
 
 
 
-        }
-        else{
-            header('Location: login.php');
-        }
+
+
 
 
 ?><!DOCTYPE html>
@@ -20,23 +22,16 @@
     <title>Qi</title>
 </head>
 <body>
-
-<h2>Welcome</h2>
-<a href="friendlist.php">current friends</a>
-
-<div class="content">
-    <?php $conn=Db::getInstance(); // voor het moment is de feedhardcoded samen met de friendlist deze gaat nog naar oop omgezetworden ?>
-    <?php $q="SELECT * FROM POSTS";?>
-    <?php $statement=$conn->prepare($q);?>
-    <?php $statement->execute();?>
-    <?php while ($res = $statement->fetch(PDO::FETCH_ASSOC)):?>
-        <h2><a href="#"><?php echo $res['user']?></a></h2>
-        <img src="<?php echo $res['filelocation']?>" alt="">
-        <p><?php echo $res['besch']?></p>
+<?php include_once("includes/nav.inc.php"); ?>
 
 
-    <?php endwhile;?>
-</div>
+<?php foreach($r as $post): ?>
+    <h2><a href="#"><?php echo $post['user']?></a></h2>
+    <img src="<?php echo $post['filelocation']?>" alt="">
+    <p><?php echo $post['besch']?></p>
+<?php endforeach;?>
+
+<button class="btnLoadMore">Load More</button>
 
 </body>
 </html>

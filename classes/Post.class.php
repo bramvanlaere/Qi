@@ -60,7 +60,7 @@ class Post
 
         $fileName=$_FILES["file"]["name"];
         $fileTmpName=$_FILES["file"]["tmp_name"];
-        $filePath= "files/" . $_SESSION['user']."-" . time().".jpg";
+        $filePath= "files/" . $_SESSION['userid']."-" . time().".jpg";
         $fileExt=explode(".",$fileName);
         $fileActualExt=strtolower(end($fileExt));
         $allowed=array('jpg','jpeg','png');
@@ -137,13 +137,14 @@ class Post
             throw new exception("add a description please");
         } else {
             $conn = Db::getInstance();
-            $statement = $conn->prepare("insert into posts (filelocation,besch,user) values (:filelocation, :besch,:user)");
+            $statement = $conn->prepare("insert into posts (filelocation,besch,user,imageuserid) values (:filelocation, :besch,:user,:imageuserid)");
             $statement->bindParam(":filelocation", $this->filePath);
             $statement->bindParam(":besch", $this->besch);
+            $statement->bindValue(":imageuserid", $_SESSION['userid']);
             $statement->bindParam(":user",$_SESSION['user']);
             $res = $statement->execute();
             if ($res = true) {
-
+                header('Location:index.php');
             }
 
 
