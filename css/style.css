@@ -1,0 +1,141 @@
+body{
+    background-image: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 360px 640px;
+    font-family: Oswald;
+}
+
+.container{
+    background-color: rgba(255, 255, 255, 0.9);
+    width:80%;
+    margin-left: 10%;
+    height: 500px;
+    margin-top: 40px;
+    border-radius: 8px;
+}
+
+.welcome{
+    display: none;
+}
+
+.container h2{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    font-family: Oswald;
+    font-weight: bold;
+    background-color: #DDDDDD;
+
+}
+
+.email{
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 40px;
+}
+
+
+
+.password{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+input{
+    height: 25px;
+    width: 80%;
+    background-color: #DDDDDD;
+    font-family: Oswald;
+    border:none;
+    border-radius: 2px;
+}
+
+.repeatPassword{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.login{
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 30px;
+}
+
+
+
+.firstname{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+
+
+.lastname{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+
+
+.submit{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.submit button{
+    background-color: #c61c18;
+    color: white;
+    font-family: Oswald;
+    text-decoration: none;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+    body{
+        background-size: cover;
+        background-repeat: no-repeat;
+
+    }
+
+    .container{
+        width:40%;
+        float: right;
+        margin-right: 5%;
+    }
+
+    .welcome{
+        display: block;
+        width:40%;
+        margin-left: 5%;
+        float: left;
+        color: white;
+        margin-top: 20%;
+    }
+
+    .welcome h1{
+        font-size: 2em;
+
+    }
+
+    .welcome p{
+        margin-top: 20px;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+.container{
+    width: 25%;
+    margin-right: 15%;
+    margin-top: 10%;
+}
+    .welcome{
+        width:25%;
+        margin-left: 15%;
+    }
+}
+
