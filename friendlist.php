@@ -1,13 +1,13 @@
 <?php
+include_once ("includes/session.inc.php");
+include_once ("classes/User.class.php");
 
-    //temp hardcoded friendlist
-$tempfriendlist=array(
+    $p = new User();
+    $c=$p->displayFriends($_SESSION['userid']);
 
-    "bram@vanlaere.org",
-    "tokke@ronaldo.com",
-    "its@yaboy.com"
 
-);
+
+
 
 
 ?><!doctype html>
@@ -17,13 +17,16 @@ $tempfriendlist=array(
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Friendlist</title>
 </head>
 <body>
+
+<?php include_once("includes/nav.inc.php"); ?>
 <h1>friendlist</h1>
 <ul>
-<?php foreach ($tempfriendlist as $res):?>
-    <li><a href="#"><?php echo " ".$res ?></a></li>
+
+<?php foreach ($c as $res):?>
+    <li><a href="#"><?php echo $res['email'];?></a></li>
 <?php endforeach;?>
 </ul>
 </body>

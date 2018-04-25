@@ -39,9 +39,11 @@
 
 <form action="" method="post">
 <input type="text" name="email" id="email" placeholder="Email">
-<input type="text" name="password" id="password" placeholder="Password">
+<input type="password" name="password" id="password" placeholder="Password">
 <input type="submit" value="Login">
 </form>
-    
+<br>
+<a href="signup.php">Sign up right here !
+</a>
 </body>
 </html>

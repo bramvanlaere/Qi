@@ -2,12 +2,8 @@
 include_once("includes/session.inc.php");
 include_once ("classes/User.class.php");
 
-
-
-
-
-$showavatar = new User();
-$showavatar->showAvatar();
+$n=new User();
+$n->showAvatar();
 
 if(!empty($_POST)){
     if(isset($_POST['update'])){
@@ -68,6 +64,9 @@ if(!empty($_POST)){
              $p->moveAvatar();
              $p->saveAvatar();
 
+
+
+
      }
     }
 
@@ -90,15 +89,14 @@ if(!empty($_POST)){
 </head>
 <body>
 
-<a href="includes/logout.inc.php">logout</a>
+<?php include_once("includes/nav.inc.php"); ?>
 
 <div class="editContainer">
     <div class="editDetails">
-
         <h1>Avatar uploaden</h1>
-        <img class="avatar" style="height: 50px;
+        <img style="height: 50px;
 	width: 50px;
-	border-radius: 50%;" src="<?php echo $_SESSION['avatar']; ?>" alt="avatar">
+	border-radius: 50%;" src="<?php echo $_SESSION['avatar'] ;?>" alt="avatar">
 
         <form class="formUpload" action="" enctype="multipart/form-data" method="post">
             <label for="avatar">Avatar uploaden:</label>

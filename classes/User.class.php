@@ -9,6 +9,23 @@ class User{
     private $editbio;
     private $editpassword;
     private $filepath;
+    public $results;
+
+    /**
+     * @return mixed
+     */
+    public function getResults()
+    {
+        return $this->results;
+    }
+
+    /**
+     * @param mixed $results
+     */
+    public function setResults($results)
+    {
+        $this->results = $results;
+    }
 
     /**
      * @return mixed
@@ -319,7 +336,54 @@ class User{
         if($statement->rowCount() == 1){
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $_SESSION['avatar'] = $result['avatar'];
+
+
         }
+    }
+
+    private function getFriendId($userid){
+        $conn=Db::getInstance();
+        $statement = $conn->prepare("select friendid from friendlist where userid = :userid");
+        $statement->bindValue(":userid",$userid);
+        $statement->execute();
+        $results = $statement->fetchAll();
+        $array = array();
+        array_push($array, $_SESSION['userid']);
+        foreach($results as $res){
+            array_push($array, $res['friendid']);
+        }
+
+
+
+        return $array;
+
+
+    }
+
+    public function displayFriends($userid){
+        $friendsid=$this->getFriendId($userid);
+        $conn=Db::getInstance();
+        $statement=$conn->prepare("select * from users where id in(".implode(',', $friendsid).") ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        return $results;
+
+    }
+
+    public function getFeed($userid){
+        $friendsid=$this->getFriendId($userid);
+        $conn=Db::getInstance();
+        $statement = $conn->prepare("select * from posts where imageuserid in (".implode(',', $friendsid).") order by id desc limit 20 ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+        return $results;
+        //returned een array met kleinere arrays in die de vriend profielen bevatten
+
+
+        //;
+
+
+
     }
 
 
