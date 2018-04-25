@@ -1,8 +1,9 @@
 <?php
 
     include_once("classes/User.class.php");
-
+$feedback = "";
     if(!empty($_POST)){
+
         $email = $_POST['email'];
         $password = $_POST['password'];
 
@@ -14,10 +15,19 @@
             $user->login();
         }
         else{
-            echo "no";
+            $feedback = "Sorry something went wrong! Please check your email or password.";
             $error=true;
 
         }
+
+        if (empty($_POST['email'])){
+            $feedback = "Please fill in your email.";
+        }elseif (empty($_POST['password'])){
+            $feedback = "Please fill in your password.";
+        }
+
+
+
 
     }
 
@@ -32,18 +42,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-
-<h1>Login</h1>
-
+<div class="welcome">
+    <h1>Welcome to QI</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in condimentum nulla. Vestibulum eu scelerisque nibh. Nullam ligula mauris, aliquet.</p>
+</div>
+<div class="container">
+<h2>Login</h2>
+<div class="login">
+    <div class="feedback">
+        <p> <?php echo $feedback;?> </p>
+    </div>
 <form action="" method="post">
+    <div class="email">
 <input type="text" name="email" id="email" placeholder="Email">
+    </div>
+    <div class="password">
 <input type="password" name="password" id="password" placeholder="Password">
-<input type="submit" value="Login">
+    </div>
+    <div class="submit">
+    <button type="submit" class="submit">Sign in</button>
+    </div>
 </form>
+</div>
 <br>
-<a href="signup.php">Sign up right here !
-</a>
+    <div class="signup">
+    <p> <a href="signup.php">Don't have an account yet? Sign up right here !</a></p>
+    </div>
+
+
+
+</div>
 </body>
 </html>

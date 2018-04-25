@@ -1,5 +1,5 @@
 body{
-    background-image: url("../../Qi-master-9/css/images/background.jpg");
+    background-image: url("images/background.jpg");
     background-repeat: no-repeat;
     background-size: 360px 640px;
     font-family: Oswald;
@@ -16,6 +16,10 @@ body{
 
 .welcome{
     display: none;
+}
+
+.feedback{
+    color: #c61c18;
 }
 
 .container h2{
@@ -61,6 +65,12 @@ input{
     margin-top: 30px;
 }
 
+.signup{
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 30px;
+}
+
 
 
 .firstname{
@@ -94,6 +104,8 @@ input{
     font-size: 14px;
     border-radius: 8px;
 }
+
+
 
 @media screen and (min-width: 768px) {
     body{
