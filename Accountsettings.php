@@ -91,8 +91,8 @@ if(!empty($_POST)){
 
 <?php include_once("includes/nav.inc.php"); ?>
 
-<div class="editContainer">
-    <div class="editDetails">
+<div>
+    <div style="margin-top: 40px; class="editDetails">
         <h1>Avatar uploaden</h1>
         <img style="height: 50px;
 	width: 50px;

@@ -130,7 +130,7 @@ class User{
     public function setPassword($password)
     {
 
-        if(strlen($password)<=8){
+        if(strlen($password)<8){
             throw new exception("Password must be at least 8 characters long.");
         } else {
             $this->password = $password;
@@ -372,10 +372,13 @@ class User{
 
     public function getFeed($userid){
         $friendsid=$this->getFriendId($userid);
-        $_SESSION['getal'] = 2;
+        $_SESSION['getal'] = 1;
+        $_SESSION['offset'] = 3;
         $conn=Db::getInstance();
-        $statement = $conn->prepare("select * from posts where imageuserid in (".implode(',', $friendsid).") order by id desc limit :getal ");
-        $statement->bindValue(':getal',$_SESSION['getal'], PDO::PARAM_INT);
+        $array=implode(',', $friendsid);
+        $_SESSION['friendarray']=$array;
+        $statement = $conn->prepare("select * from posts where imageuserid in (".implode(',', $friendsid).") order by timestamp desc ");
+
         $statement->execute();
         $results = $statement->fetchAll();
         return $results;

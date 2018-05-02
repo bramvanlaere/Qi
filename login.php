@@ -1,7 +1,8 @@
 <?php
 
     include_once("classes/User.class.php");
-$feedback = "";
+    $feedback = "";
+
     if(!empty($_POST)){
 
         $email = $_POST['email'];
@@ -11,10 +12,8 @@ $feedback = "";
         $user->setEmail($email);
         $user->setPassword($password);
         if($user->canLogin()){
-            echo "ye";
             $user->login();
-        }
-        else{
+        } else {
             $feedback = "Sorry something went wrong! Please check your email or password.";
             $error=true;
 
@@ -22,7 +21,7 @@ $feedback = "";
 
         if (empty($_POST['email'])){
             $feedback = "Please fill in your email.";
-        }elseif (empty($_POST['password'])){
+        } elseif (empty($_POST['password'])){
             $feedback = "Please fill in your password.";
         }
 
@@ -31,10 +30,6 @@ $feedback = "";
 
     }
 
-
-
-
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,8 +37,8 @@ $feedback = "";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="welcome">
@@ -72,9 +67,6 @@ $feedback = "";
     <div class="signup">
     <p> <a href="signup.php">Don't have an account yet? Sign up right here !</a></p>
     </div>
-
-
-
 </div>
 </body>
 </html>
