@@ -6,6 +6,7 @@ class Post
     private $filePath;
     private $besch;
 
+
     /**
      * @return mixed
      */
@@ -150,6 +151,8 @@ class Post
 
         }
     }
+
+
 
 
 }
