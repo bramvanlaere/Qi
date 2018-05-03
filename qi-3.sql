@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 02 mei 2018 om 10:47
+-- Gegenereerd op: 03 mei 2018 om 18:58
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -30,7 +30,8 @@ CREATE TABLE `comments` (
   `commentid` int(11) NOT NULL,
   `commentuserid` int(11) NOT NULL,
   `comment` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `commentimageid` int(11) NOT NULL
+  `commentimageid` int(11) NOT NULL,
+  `commenttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -50,10 +51,34 @@ CREATE TABLE `friendlist` (
 --
 
 INSERT INTO `friendlist` (`Id`, `userid`, `friendid`) VALUES
-(2, 48, 2),
-(4, 48, 5),
-(6, 5, 48),
-(7, 48, 1);
+(2, 48, 5),
+(4, 5, 48),
+(6, 53, 48),
+(7, 51, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `inappropriate`
+--
+
+CREATE TABLE `inappropriate` (
+  `id` int(11) NOT NULL,
+  `postid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `inappropriate`
+--
+
+INSERT INTO `inappropriate` (`id`, `postid`, `userid`) VALUES
+(1, 89, 5),
+(5, 89, 48),
+(6, 87, 51),
+(7, 85, 51),
+(10, 89, 51),
+(11, 71, 5);
 
 -- --------------------------------------------------------
 
@@ -63,10 +88,20 @@ INSERT INTO `friendlist` (`Id`, `userid`, `friendid`) VALUES
 
 CREATE TABLE `likes` (
   `likeid` int(11) NOT NULL,
-  `likepostid` int(11) NOT NULL,
-  `likesendID` int(11) NOT NULL,
+  `likeimageid` int(11) NOT NULL,
+  `likesendid` int(11) NOT NULL,
   `likereceiveid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `likes`
+--
+
+INSERT INTO `likes` (`likeid`, `likeimageid`, `likesendid`, `likereceiveid`) VALUES
+(71, 87, 48, 48),
+(80, 89, 48, 5),
+(81, 89, 5, 5),
+(82, 85, 48, 48);
 
 -- --------------------------------------------------------
 
@@ -98,8 +133,9 @@ INSERT INTO `posts` (`id`, `filelocation`, `imageuserid`, `besch`, `user`, `time
 (82, 'files/48-1525097082.jpg', 48, 'test', 'test1234@bram.com', '2018-05-01 08:51:04'),
 (83, 'files/48-1525097099.jpg', 1, 'dddd', 'test1234@bram.com', '2018-05-01 14:25:12'),
 (85, 'files/48-1525183994.jpg', 48, 'this an image ', 'test1234@bram.com', '2018-05-01 14:13:15'),
-(86, 'files/5-1525184571.jpg', 5, 'this is also an image', 'joris@joris.com', '2018-05-01 14:22:51'),
-(87, 'files/48-1525247144.jpg', 48, 'test lel', 'test1234@bram.com', '2018-05-02 07:45:44');
+(87, 'files/48-1525247144.jpg', 48, 'test lel', 'test1234@bram.com', '2018-05-02 07:45:44'),
+(88, 'files/53-1525259316.jpg', 53, 'fret', 'thomaslaeremans@hotmail.com', '2018-05-02 11:08:36'),
+(89, 'files/5-1525290082.jpg', 5, 'ddedee', 'joris@joris.com', '2018-05-02 19:41:23');
 
 -- --------------------------------------------------------
 
@@ -148,6 +184,12 @@ ALTER TABLE `friendlist`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexen voor tabel `inappropriate`
+--
+ALTER TABLE `inappropriate`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexen voor tabel `likes`
 --
 ALTER TABLE `likes`
@@ -180,15 +222,20 @@ ALTER TABLE `comments`
 ALTER TABLE `friendlist`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT voor een tabel `inappropriate`
+--
+ALTER TABLE `inappropriate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
 -- AUTO_INCREMENT voor een tabel `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `likeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --

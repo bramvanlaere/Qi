@@ -23,7 +23,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="Accountsettings.php">Account</a>
+            <a class="nav-link" href="profile.php?userID=<?php echo $_SESSION['userid'];?>">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="Accountsettings.php">Settings</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="friendlist.php">Friends</a>

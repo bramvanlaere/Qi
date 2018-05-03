@@ -30,19 +30,23 @@ if(!empty($_GET)) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/profile.css">
     <title>Profile</title>
 </head>
 <body>
 
+<?php include_once ('includes/nav.inc.php')?>
 
-
+<div id="box">
 <div class="profileInfo">
-    <img class="profilePhoto" src="" alt="profile photo">
+    <img class="profilePhoto" src="<?php echo $avatar?>" alt="profile photo">
     <div class="profileDetails">
         <div class="editProfile">
             <p class="userName"><?php echo $username; ?></p>
 
-            <button></button>
+            <button class="btnFollow">follow</button>
+            <a class="btnEditProfile" href="Accountsettings.php"></a>
         </div>
 
         <p class="userDescription"><?php echo $bioText; ?></p>
@@ -69,13 +73,13 @@ if(!empty($_GET)) {
 
                     <div class="overlay">
                         <div class="likes">
-                            <img class="overlay-icon"src="images/white_heart.png" alt="">
+                            <img class="overlay-icon"src="images/heart_blank.png" alt="">
                             <p>
-                            </p>
-                        </div>
-                        <div class="comments">
-                            <img class="overlay-icon" src="images/comments.png" alt="">
-                            <p>
+                                <?php
+                                $likes = new postDetails();
+                                $likecount = $likes->getLikes($post['id']);
+                                echo $likecount;
+                                ?>
                             </p>
                         </div>
                     </div>
@@ -88,6 +92,7 @@ if(!empty($_GET)) {
         <button class="btnLoadMore">Load More</button>
 
     </div>
+</div>
     <a href="imageupload.php" id="floatingBtn">+</a>
 </main>
 <script

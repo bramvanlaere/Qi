@@ -84,6 +84,31 @@ class postDetails{
         return $result;
     }
 
+    public function GetEmail($postid){
+        $conn = Db::getInstance();
+        $getUserID = $conn->prepare("SELECT imageuserid FROM posts WHERE id = :postid");
+        $getUserID->bindValue(':postid', $postid );
+        $getUserID->execute();
+        $userID = $getUserID->fetch(PDO::FETCH_ASSOC);
+
+        $email = $conn->prepare("SELECT email FROM users WHERE id = :id");
+        $email->bindValue(':id', $userID['imageuserid']);
+        $email->execute();
+        $result = $email->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function getComments($postid){
+        $conn = Db::getInstance();
+        $getComments = $conn->prepare("SELECT * from comments where commentimageid = :postid");
+        $getComments->bindValue(':postid', $postid);
+        $getComments->execute();
+        $comments = $getComments->fetchAll();
+        return $comments;
+
+    }
+
 
 
 

@@ -1,0 +1,451 @@
+
+body {
+
+    font-family: Oswald;
+    background-color: #FAFAFA;
+    color: #4E606A;
+    margin-bottom: 30px;
+}
+body a {
+    text-decoration: none;
+    color: #30618B;
+}
+
+#box{
+    margin-top: 10%;
+
+}
+
+
+
+.headerLogout{
+    margin-right: 20px;
+}
+
+
+
+.searchBar input {
+    font-family: Oswald;
+    border: 1px solid #dddbd9;
+    border-radius: 30px;
+    background-color: #FAFAFA;
+    padding: 8px;
+    margin-left: 50px;
+}
+.headerUsername{
+    font-size: 1.3em;
+    color: #262626;
+}
+.profileInfo {
+    width: 50%;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+}
+
+.profilePhoto {
+    object-fit: cover;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    float: left;
+    margin-left: 50px;
+    margin-right: 30px;
+}
+
+.profileDetails {
+    float:left;
+    padding-top: 15px;
+    margin-left: 35px;
+}
+
+
+.editProfile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.btnEditProfile {
+    background-color: #fbf9f7;
+    border:1px solid #4E606A;
+    font-family: 'instaLight';
+    color: #ACA9A4;
+    padding:4px 4px 4px 4px;
+    font-size: 0.6em;
+    border-radius: 5%;
+
+}
+
+.btnEditProfile:hover {
+    color: #4E606A;
+    cursor: pointer;
+}
+
+.btnFollow, .btnUnfollow, .unfollowed {
+    background-color: #fbf9f7;
+    border:1px solid #719DBE;
+    font-family: 'instaLight';
+    text-transform: uppercase;
+    color: #719DBE;
+    padding:4px 4px 4px 4px;
+    font-size: 0.6em;
+    border-radius: 5%;
+}
+.btnFollow:hover, .btnFollowPrivate:hover, btnPrivateRequested:hover, .btnUnfollow:hover {
+    cursor: pointer;
+    color: #5A8ACE;
+}
+
+.followed, .btnUnfollow {
+    background-color: #60C029;
+    border:1px solid #60C029;
+    color: white;
+}
+
+.userDescription {
+    font-size: 0.7em;
+    margin-bottom: 10px;
+}
+
+.userStats {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.7em;
+}
+.userStats li {
+    margin-right: 10px;
+}
+
+.userStats span {
+    font-weight: bold;
+}
+.feedContainer {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.profileFeed {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto 0 auto;
+}
+.feedBox{
+    position: relative;
+    margin: 20px;
+    height: 300px;
+    width: 300px;
+}
+.feedBox img{
+    object-fit: cover;
+    height: 300px;
+    width: 300px;
+}
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.feedBox:hover .overlay{
+    display: block;
+    background: rgba(0, 0, 0, .6);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.overlay img{
+    width: 30px;
+    height: 27px;
+    margin: 0 0 10px 0;
+}
+.overlay div{
+    margin: 25px;
+}
+.overlay p{
+    color: white;
+}
+
+
+
+
+.indexFeed .feedPic {
+    width: 600px;
+    height: 500px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 0;
+    border: 1px solid #EDEEEE;
+    overflow: hidden;
+    margin: 0px 0 0 0;
+}
+.feedPic img {
+    width: 100%;
+    max-height: 100%;
+}
+.feedFooter{
+    height: 100%;
+    width: 600px;
+    border: 1px solid #EDEEEE;
+    margin: 5px 0 50px 0;
+    background-color: white;
+}
+.feedFooterTop{
+    border-bottom: 1px solid #EDEEEE;
+    width: 530px;
+    margin: 0 auto 0 auto;
+    padding: 10px 0 10px 0;
+}
+.feedFooterTop p{
+    font-size: .9em;
+}
+.feedFooterTop ul li{
+    margin: 10px 0 0 0;
+    font-size: .8em;
+    color: #262626;
+    font-family: 'instaBold', 'sans-serif';
+}
+
+
+#commentField{
+    width: 300px;
+    margin: 10px 0 0 0;
+    font-size: .8em;
+    padding: 10px 0 10px 10px;
+    border: none;
+    color: #7B7A7C;
+}
+
+.
+.btnLoadMore:hover {
+    cursor: pointer;
+    font-family: 'instaBold';
+}
+.loadMoreContainer {
+    text-align: center;
+    width: 200px;
+    margin: 20px auto 20px auto;
+}
+.container {
+    width: 80%;
+    margin: 1.5em auto 3em auto;
+    max-width: 350px;
+}
+.logo {
+    display: block;
+    width: 100%;
+    margin: 0 auto 0 auto;
+}
+
+#floatingBtn {
+    color: white;
+    position: fixed;
+    text-align: center;
+    bottom: 20px;
+    right: 5%;
+    box-sizing: border-box;
+    padding-top: 20px;
+    line-height: 0px;
+    font-size: 1.6em;
+    background-color: #262626;
+    width: 45px;
+    height: 45px;
+    border: 0px;
+    border-radius: 100%;
+}
+#floatingBtn a:active,a:link,a:visited {
+    text-decoration: none;
+}
+#floatingBtn:hover {
+    bottom: 22px;
+}
+footer p{
+    font-family: instaLight;
+    color: #ACA9A4;
+    text-align: center;
+    font-size: .9em;
+    line-height: 1.5em;
+}
+footer a{
+    text-decoration: none;
+    color: #4E606A;
+}
+footer span{
+    color: #818380;
+}
+
+p {
+    margin-top : 15px;
+    font-size: .8em;
+}
+button {
+    cursor: pointer;
+}
+
+figure{
+    margin: 0;
+}
+#uploadPreview{
+    display: block;
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+}
+select{
+    display: block;
+}
+
+.postDetail{
+    background-color: grey;
+    width: 900px;
+    height: 400px;
+    margin: 100px auto 0 auto;
+    display: flex;
+    box-shadow: 0px 3px 10px #a5a5a6;
+}
+
+.avatar{
+    object-fit: cover;
+    height: 50px;
+    width: 100px;
+    border-radius: 50%;
+    float: left;
+    display: inline-block;
+    margin: -10px 0 0 0;
+}
+.avatarPostDetail{
+    object-fit: cover;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    float: left;
+    display: inline-block;
+    margin: -10px 0 0 0;
+}
+.likes{
+    font-size: .9em;
+    color: #7B7A7C;
+}
+.timestamp{
+    font-size: .9em;
+    color: #999999;
+}
+.commentFeed {
+    overflow-y: scroll;
+}
+
+#heart{
+    margin: 10px 0 0 0;
+}
+
+#visible {
+    visibility: visible;
+}
+.editContainer {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.editContainer h1 {
+    color: #06365F;
+    font-family: 'instaRegular', 'sans-serif';
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dddbd9;
+}
+.editContainer form {
+    margin-bottom: 50px;
+}
+
+.editContainer label {
+    width: 150px;
+    display: inline-block;
+    font-size: 0.8em;
+}
+.editContainer input {
+    margin-bottom: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #dddbd9;
+}
+.formDetails select, textarea {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 250px;
+    border: 1px solid #dddbd9;
+}
+
+.formDetails textarea {
+    vertical-align: top;
+}
+.messageUpdate{
+    font-family: 'instaBold', 'sans-serif';
+    font-size: .7em;
+    color: #00D062;
+    margin: 20px 0 0 0;
+}
+.messageUpdateError{
+    font-family: 'instaBold', 'sans-serif';
+    font-size: .7em;
+    margin: 20px 0 0 0;
+    color: #FE3554;
+}
+#availability{
+    display: block;
+    font-size: .7em;
+    margin: -10px 0 10px 0;
+}
+.avatar{
+    object-fit: cover;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin: 20px 35px 0 20px;
+    float: left;
+}
+.formUpload{
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+.formUpload label{
+    margin-bottom:1em;
+}
+.formUpload input[type="submit"]{
+    font-family: instaLight;
+    width: 10%;
+    font-size: .8em;
+}
+.feedback{
+    font-family: 'instaRegular', 'sans-serif';
+    text-align: center;
+}
+
+.searchKeywords{
+    margin: 0px 0px 10px 0;
+    font-size: 1.5em;
+    color: #262626;
+}
+.countPosts{
+    margin: 0px 0px 20px 0;
+}
+span{
+    font-family: 'instaBold', 'sans-serif';
+}
+.posts {
+    object-fit: cover;
+    height: 300px;
+    width: 300px;
+    margin: 20px;
+}

@@ -1,7 +1,41 @@
 $(document).ready(function(){
+    $('.comment-btn-submit').click( function(e){
+        console.log("comment");
+
+        var _postID = $(this).val();
+        console.log(_postID);
+        var _comment = $(".commentField"+_postID).val();
+        var _userID = $(".userID").val();
+        var _userName = $(".email").val();
+        var _imageID = $(".imageID"+_postID).val();
 
 
-    $('.likeHeart').on('click', function(){
+        if (_comment.length > 0 && _userID != null){
+
+            $(".commentsList"+_postID).append("<li><a href='profile.php?userID=>"+ _userID +"'>"+_userName+"</a>" +
+                "<span> "+_comment+"</span></li>");
+
+            console.log(_comment+_userID+_userName+_postID);
+            $.ajax({
+                type: 'POST',
+                url: 'includes/comment.inc.php',
+                data: {newComment: _comment, userid: _userID, userName: _userName, imageID: _imageID},
+                succes: function(data)
+                {
+
+                    console.log(data);
+                }
+
+            });
+        }
+
+        e.preventDefault();
+        return false;
+
+
+    });
+
+    $('.likeHeart').on('click', function(e){
         console.log('clicked');
         var imageID = $(this).attr("value");
 
@@ -34,8 +68,10 @@ $(document).ready(function(){
             });
             $(this).attr("src", "images/heart_blank.png");
             $(this).attr("class", "likeHeart btnlike");
+            e.preventDefault();
             return false;
         }
+
     });
 
     $('.btnLoadMore').click(function() {

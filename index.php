@@ -2,8 +2,8 @@
     include_once ("classes/Db.class.php");
     include_once ("includes/session.inc.php");
     include_once ("classes/User.class.php");
-    include_once ("classes/Comment.class.php");
     include_once ("classes/postDetails.class.php");
+    include_once ("classes/Post.class.php");
 
     $userid = $_SESSION['userid'];
     $f = new User();
@@ -11,20 +11,28 @@
     $_SESSION['offset'] = 0;
 
 
-if(!empty($_POST['comments'])){
-
-    $c = new Comments();
-    $comments=$_POST["comments"];
-    $c->setComments($comments);
-    $c->saveComments();
 
 
+    if (isset($_POST['report'])){
+        $p = new Post();
+        $postId = $_POST['postid'];
+        $p->setPostId($postId);
+        $p->newInappropriate();
+        $id = $postId;
+
+    }
+
+    if (isset($_POST['undoreport'])){
+        $p = new Post();
+        $postId = $_POST['postid'];
+        $p->setPostId($postId);
+        $p->delInappropriate();
+    }
 
 
 
 
 
-}
 
 
 
@@ -47,7 +55,17 @@ if(!empty($_POST['comments'])){
 
         <?php foreach($r as $post): ?>
         <?php $i++ ?>
+            <?php if (Post::countInappropriate($post['id']) === false):?>
             <div class="post__user" >
+                <form action="" method="post">
+                    <?php if(Post::userInappropriate($post['id'])==0): ?>
+                        <button class="btn btn-primary" name="report" id="report">report</button>
+                    <?php else: ?>
+                        <button class="btn btn-primary" name="undoreport" id="report" style="background-color: red;">undo report</button>
+                    <?php endif; ?>
+                    <span><?php echo Post::countInappropriate($post['id']); ?></span>
+                    <input type="hidden" name="postid" id="postid" value="<?php echo $post['id']?>">
+                </form>
                 <h4 class=""><a class="" href="profile.php?userID=<?php echo $post['imageuserid'];?>"><?php echo $post['user']?></a></h4>
                 <img src="<?php echo $post['avatar']?>" alt="">
              </div>
@@ -59,7 +77,7 @@ if(!empty($_POST['comments'])){
                 $likeCounter = new postDetails();
                 $likes = $likeCounter->getLikes($post['id']);
                 if($likes == 0) {
-                    echo "No likes yet";
+                    echo "No likes this yet";
                 }
                 elseif($likes == 1)
                 {
@@ -72,6 +90,31 @@ if(!empty($_POST['comments'])){
                 ?>
             </p>
             <div style="padding: auto;">
+                <ul class="commentsList<?php echo $i; ?>">
+                    <?php
+                    $singlePost = new postDetails();
+                    $email = $singlePost->getEmail($post['id']);
+                    $comments = $singlePost->getComments($post['id']);
+                    ?>
+                    <input type="hidden" class="imageID<?php echo $i; ?>" value="<?php echo $post['id']; ?>">
+                    <input type="hidden" class="userID" value="<?php echo $_SESSION['userid']; ?>">
+                    <input type="hidden" class="email" value="<?php echo $_SESSION['user']; ?>">
+
+                    <a href="profile.php?userID=<?php echo $post['imageuserid']; ?>"></a>
+
+                    <?php foreach( $comments as $comment): ?>
+                        <li>
+                            <a href="profile.php?userID=<?php echo $comment['commentUserID']; ?>">
+                                <?php
+                                $user = new Users();
+                                $user->getProfile($comment['commentUserID']);
+                                $email = $user->email;
+                                echo $email;
+                                ?></a>
+                            <span class="comment-text"><?php echo htmlspecialchars($comment['commentText']); ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
                 <div class="feedFooterBottom">
                     <?php
                     $like = new postDetails();
@@ -93,8 +136,13 @@ if(!empty($_POST['comments'])){
                     ?>
                 </div>
             </div>
+            <form>
                 <img class="likeHeart <?php echo $class; ?> "src="<?php echo $source; ?>" alt="like"
                      value="<?php echo $post['id'] ?>">
+            <input class="commentField<?php echo $i; ?>" type="text" name="commentField" placeholder="Add a comment...">
+            <input class="comment-btn-submit" type="submit" value="<?php echo $i; ?>"
+                   style="position: absolute; left: -9999px"/>
+            </form>
             <div class="card-text">
                 <p><?php echo $post['besch']?></p>
             </div>
@@ -106,17 +154,9 @@ if(!empty($_POST['comments'])){
                     ?>
                 </p>
 
-            <div style="margin-bottom: 10%;" class="comments">
 
-                <form method='post'>
-                    <label for="comment"></label>
-                    <input type='text' name='comments'>
-                    <button class="btn btn-dark" name='submit'>Comment</button>
-                    <hr>
-                </form>
-
-            </div>
-
+            <?php endif?>
+            <hr>
 <?php endforeach;?>
     </div>
 </div>

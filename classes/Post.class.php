@@ -5,6 +5,23 @@ class Post
     private $image;
     private $filePath;
     private $besch;
+    private $postId;
+
+    /**
+     * @return mixed
+     */
+    public function getPostId()
+    {
+        return $this->postId;
+    }
+
+    /**
+     * @param mixed $postId
+     */
+    public function setPostId($postId)
+    {
+        $this->postId = $postId;
+    }
 
 
     /**
@@ -150,6 +167,47 @@ class Post
 
 
         }
+    }
+    public function newInappropriate(){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("insert into inappropriate(userid,postid) VALUES (:userid,:postid)");
+        $statement->bindValue(':userid',$_SESSION['userid']);
+        $statement->bindValue(':postid',$this->getPostId());
+        $res = $statement->execute();
+        return $res;
+    }
+
+    public function delInappropriate(){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("delete from inappropriate WHERE postid = :postid and userid = (SELECT id FROM users WHERE email = :email)");
+        $statement->bindValue(':email',$_SESSION['user']);
+        $statement->bindValue(':postid',$this->getPostId());
+        $res = $statement->execute();
+        return $res;
+    }
+
+    public function userInappropriate($id){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select * from inappropriate WHERE postid = :postid and userid = (SELECT id FROM users WHERE email = :email)");
+        $statement->bindValue(':postid',$id);
+        $statement->bindValue(':email',$_SESSION['user']);
+        $statement->execute();
+        $res = $statement->rowCount();
+        return $res;
+    }
+
+    public function countInappropriate($id){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select * from inappropriate WHERE postid= :postid");
+        $statement->bindValue(':postid',$id);
+        $statement->execute();
+        if($statement->rowCount()>=3){
+            $res = true;
+        } else{
+            $res = false;
+        }
+        return $res;
+
     }
 
 
