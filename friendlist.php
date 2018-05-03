@@ -1,4 +1,3 @@
-
 <?php
 include_once ("includes/session.inc.php");
 include_once ("classes/User.class.php");
@@ -35,5 +34,4 @@ include_once ("classes/User.class.php");
 <?php endforeach;?>
 </ul>
 </body>
-
 </html>

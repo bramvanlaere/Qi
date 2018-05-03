@@ -1,4 +1,3 @@
-
 <?php
 include_once('includes/session.inc.php');
 include_once('classes/Db.class.php');

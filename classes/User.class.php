@@ -1,4 +1,3 @@
-
 <?php
 include_once ('Db.class.php');
 class User{
@@ -378,15 +377,39 @@ class User{
         $conn=Db::getInstance();
         $array=implode(',', $friendsid);
         $_SESSION['friendarray']=$array;
-        $statement = $conn->prepare("select * from posts where imageuserid in (".implode(',', $friendsid).") order by timestamp desc ");
-
+        $statement = $conn->prepare("select * from posts where imageuserid in (".implode(',', $friendsid).") order by timestamp desc limit :getal ");
+        $statement->bindValue(':getal',$_SESSION['getal'], PDO::PARAM_INT);
         $statement->execute();
         $results = $statement->fetchAll();
         return $results;
         //returned een array met kleinere arrays in die de vriend profielen bevatten
 
 
-        //;
+
+    }
+
+
+    public function getProfile($userid)
+    {
+        $conn=Db::getInstance();
+        $getProfile = $conn->prepare("select * from users where id = :id");
+        $getProfile->bindValue(':id',$userid);
+        $getProfile->execute();
+        $profileInfo = $getProfile->fetch(PDO::FETCH_ASSOC);
+
+        return $profileInfo;
+
+    }
+    public function getProfileFeed($userid){
+
+        $conn=Db::getInstance();
+        $statement = $conn->prepare("select * from posts where imageUserID = :userid order by timestamp desc");
+        $statement->bindValue(':userid', $userid);
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+
+        return $results;
 
 
 
@@ -401,5 +424,6 @@ class User{
 
 
 
-}
 
+
+}

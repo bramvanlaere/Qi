@@ -59,9 +59,39 @@ class postDetails{
         return $result;
     }
 
+    public function likeCheck($postid){
+        $conn = Db::getInstance();
+
+        $likeSenderID = $_SESSION['userid'];
+
+        $likeCheck = $conn->prepare("SELECT * FROM likes WHERE likeimageid = $postid AND likesendid = $likeSenderID");
+        $likeCheck->execute();
+
+        if ($likeCheck->rowCount() == 1) {
+            return true;
+        }
+        else{return false;}
+
+
+    }
+    public function getLikes($postid){
+    $conn = Db::getInstance();
+
+        $likeCount = $conn->prepare("SELECT likeimageid FROM likes WHERE likeimageid = :likeimageid");
+        $likeCount->bindValue(":likeimageid", $postid);
+        $likeCount->execute();
+        $result = $likeCount->rowCount();
+        return $result;
+    }
+
+
+
+
+
 
 
 }
+
 
 
 ?>
