@@ -108,8 +108,56 @@ class postDetails{
         return $comments;
 
     }
+    public function getImage($postid){
+        $conn = Db::getInstance();
+        $result = array();
 
+        $statement = $conn->prepare("SELECT * FROM posts WHERE id = :id");
+        $statement->bindValue(':id', $postid);
+        $statement->execute();
 
+        if($statement->rowCount() == 1){
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        }
+        return $result;
+
+    }
+    public function getAvatar($postid){
+        $conn = Db::getInstance();
+        $getUserID = $conn->prepare("SELECT imageuserid FROM posts WHERE id = :id");
+        $getUserID->bindValue(':id', $postid);
+        $getUserID->execute();
+        $userID = $getUserID->fetch(PDO::FETCH_ASSOC);
+
+        $avatarLocation = $conn->prepare("SELECT avatar FROM users WHERE id = :userid");
+        $avatarLocation->bindValue(':userid', $userID['imageuserid']);
+        $avatarLocation->execute();
+        $result = $avatarLocation->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function getUserID($postid){
+        $conn = Db::getInstance();
+        $getUserID = $conn->prepare("SELECT imageuserid FROM posts WHERE id = :id");
+        $getUserID->bindValue(':id',$postid);
+        $getUserID->execute();
+        $userID = $getUserID->fetch(PDO::FETCH_ASSOC);
+
+        $result = $userID;
+
+        return $result;
+    }
+    public function getDescription ($postid){
+        $conn = Db::getInstance();
+        $getDescription = $conn->prepare("SELECT besch FROM posts WHERE id = :id");
+        $getDescription->bindValue(':id', $postid );
+        $getDescription->execute();
+        $description = $getDescription->fetch(PDO::FETCH_ASSOC);
+
+        return $description;
+    }
 
 
 

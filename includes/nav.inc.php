@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<nav style="background-color: white; border-bottom: #c61c18 solid 4px; font-family: Oswald;"; class="navbar navbar-expand-lg navbar-light fixed-top p-7" id="mainNav">
+<nav style="background-color: white; border-bottom: #c61c18 solid 4px; font-family: Oswald;"; class="navbar navbar-expand-lg navbar-light fixed-top" id="">
     <div class="container">
         <a class="navbar-brand" href="index.php">QI</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

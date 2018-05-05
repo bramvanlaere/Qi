@@ -12,6 +12,10 @@ if(!empty($_GET)) {
 
     $profile = new User();
     $r=$profile->getProfile($userID);
+    $followers=$profile->getFollowCount($userID);
+    $follow=$profile->getFollowerCount($userID);
+    $postcount=$profile->getPostCount($userID);
+
 
 
     $username = $r['email'];
@@ -46,15 +50,15 @@ if(!empty($_GET)) {
             <p class="userName"><?php echo $username; ?></p>
 
             <button class="btnFollow">follow</button>
-            <a class="btnEditProfile" href="Accountsettings.php"></a>
+            <a class="btnEditProfile" href="Accountsettings.php">edit profile</a>
         </div>
 
         <p class="userDescription"><?php echo $bioText; ?></p>
 
         <ul class="userStats">
-            <li><span></span> posts</li>
-            <li><span></span> followers</li>
-            <li><span></span> following</li>
+            <li><span><?php echo $postcount; ?></span> posts</li>
+            <li><span><?php echo $follow?></span> followers</li>
+            <li><span><?php echo $followers?></span> following</li>
         </ul>
 
     </div>

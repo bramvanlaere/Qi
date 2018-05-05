@@ -403,7 +403,7 @@ class User{
     public function getProfileFeed($userid){
 
         $conn=Db::getInstance();
-        $statement = $conn->prepare("select * from posts where imageUserID = :userid order by timestamp desc");
+        $statement = $conn->prepare("select * from posts where imageuserid = :userid order by timestamp desc");
         $statement->bindValue(':userid', $userid);
         $statement->execute();
         $results = $statement->fetchAll();
@@ -413,6 +413,39 @@ class User{
 
 
 
+    }
+
+    public function getPostCount($userid){
+
+        $conn=Db::getInstance();
+        $statement = $conn->prepare("select * from posts where imageuserid = :userid order by timestamp desc");
+        $statement->bindValue(':userid', $userid);
+        $statement->execute();
+        $statement->fetchAll();
+        $postCount = $statement->rowCount();
+
+
+        return $postCount;
+
+
+
+    }
+    public function getFollowCount($userid){
+        $conn=Db::getInstance();
+        $getFollowings = $conn->prepare("select * from friendlist where userid = :userid");
+        $getFollowings->bindValue(":userid", $userid);
+        $getFollowings->execute();
+        $followingCount = $getFollowings->rowCount();
+        return $followingCount;
+    }
+
+    public function getFollowerCount($userid){
+        $conn=Db::getInstance();
+        $getFollows = $conn->prepare("select * from friendlist where friendid = :friendid");
+        $getFollows->bindValue(":friendid", $userid);
+        $getFollows->execute();
+        $followCount = $getFollows->rowCount();
+        return $followCount;
     }
 
 

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $('.comment-btn-submit').click( function(e){
         console.log("comment");
 
@@ -6,7 +7,6 @@ $(document).ready(function(){
         console.log(_postID);
         var _comment = $(".commentField"+_postID).val();
         var _userID = $(".userID").val();
-        var _userName = $(".email").val();
         var _imageID = $(".imageID"+_postID).val();
 
 
@@ -15,11 +15,10 @@ $(document).ready(function(){
             $(".commentsList"+_postID).append("<li><a href='profile.php?userID=>"+ _userID +"'>"+_userName+"</a>" +
                 "<span> "+_comment+"</span></li>");
 
-            console.log(_comment+_userID+_userName+_postID);
             $.ajax({
                 type: 'POST',
                 url: 'includes/comment.inc.php',
-                data: {newComment: _comment, userid: _userID, userName: _userName, imageID: _imageID},
+                data: {newcomment: _comment, userid: _userID, imageid: _postID},
                 succes: function(data)
                 {
 
@@ -33,6 +32,18 @@ $(document).ready(function(){
         return false;
 
 
+    });
+
+    $('.delete').click(function(){
+        $.ajax({
+            type: 'POST',
+            url: 'includes/deletePost.inc.php',
+            data: $(this).serialize(),
+            success: function(data)
+            {
+                window.location.href='index.php';
+            }
+        });
     });
 
     $('.likeHeart').on('click', function(e){

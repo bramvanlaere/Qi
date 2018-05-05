@@ -104,17 +104,20 @@
 
                     <?php foreach( $comments as $comment): ?>
                         <li>
-                            <a href="profile.php?userID=<?php echo $comment['commentUserID']; ?>">
+                            <a href="profile.php?userID=<?php echo $comment['commentuserid']; ?>">
                                 <?php
-                                $user = new Users();
-                                $user->getProfile($comment['commentUserID']);
-                                $email = $user->email;
+                                $user = new User();
+                                $r=$user->getProfile($comment['commentuserid']);
+                                $email = $r['email'];
                                 echo $email;
                                 ?></a>
-                            <span class="comment-text"><?php echo htmlspecialchars($comment['commentText']); ?></span>
+                            <span class="comment-text"><?php echo htmlspecialchars($comment['comment']); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
+                <div class="card-text">
+                    <p><?php echo $post['besch']?></p>
+                </div>
                 <div class="feedFooterBottom">
                     <?php
                     $like = new postDetails();
@@ -143,9 +146,6 @@
             <input class="comment-btn-submit" type="submit" value="<?php echo $i; ?>"
                    style="position: absolute; left: -9999px"/>
             </form>
-            <div class="card-text">
-                <p><?php echo $post['besch']?></p>
-            </div>
                 <p style="color: grey;font-size: small;">
                     <?php
                     $timestamp = new postDetails();
