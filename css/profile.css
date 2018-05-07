@@ -68,6 +68,11 @@ body a {
 
 }
 
+#show{
+    display: none;
+
+}
+
 .btnEditProfile:hover {
     color: #4E606A;
     cursor: pointer;
@@ -82,7 +87,7 @@ body a {
     color: #719DBE;
     padding:4px 4px 4px 4px;
     font-size: 0.6em;
-    border-radius: 5%;
+    border-radius: 10%;
 }
 .btnFollow:hover, .btnUnfollow:hover {
     cursor: pointer;
@@ -90,8 +95,8 @@ body a {
 }
 
 .followed, .btnUnfollow {
-    background-color: #60C029;
-    border:1px solid #60C029;
+    background-color: #719DBE;
+    border:1px solid #719DBE;
     color: white;
 }
 

@@ -5,6 +5,7 @@ include_once ("classes/User.class.php");
 include_once ("classes/Comment.class.php");
 include_once ("classes/postDetails.class.php");
 
+
 if(!empty($_GET)) {
 
     $userID = $_GET['userID'];
@@ -23,9 +24,30 @@ if(!empty($_GET)) {
     $avatar = $r['avatar'];
     $userID = $r['id'];
 
-    $feed = new User();
-    $res=$feed->getProfileFeed($userID);
+if($_SESSION['userid']===$_SESSION['targetUserID']){
+        $show="show";
+        $btnClass="";
+        $btnText="";
+        $feed = new User();
+        $res = $feed->getProfileFeed($userID);
 
+}else   {
+        $show="";
+        if ($profile->followCheck()) {
+            $btnClass = "btnUnfollow";
+            $btnText = "FOLLOWING";
+            $feed = new User();
+            $res = $feed->getProfileFeed($userID);
+
+        } else {
+            // als hij nog niet gevolgd wordt, geen feed, wel boodschap.
+            $btnClass = "btnFollow";
+            $btnText = "Follow";
+            $feed = new User();
+            $res = $feed->getProfileFeed($userID);
+        }
+
+}
 
 }
 
@@ -39,8 +61,7 @@ if(!empty($_GET)) {
     <title>Profile</title>
 </head>
 <body>
-
-<?php include_once ('includes/nav.inc.php')?>
+<?php include_once ('includes/nav.inc.php');?>
 
 <div id="box">
 <div class="profileInfo">
@@ -49,8 +70,7 @@ if(!empty($_GET)) {
         <div class="editProfile">
             <p class="userName"><?php echo $username; ?></p>
 
-            <button class="btnFollow">follow</button>
-            <a class="btnEditProfile" href="Accountsettings.php">edit profile</a>
+            <button id="<?php echo $show?>" class="<?php echo $btnClass; ?>"><?php echo $btnText; ?></button>
         </div>
 
         <p class="userDescription"><?php echo $bioText; ?></p>
@@ -91,11 +111,6 @@ if(!empty($_GET)) {
             </a>
         <?php endforeach; ?>
     </div>
-    <div class="loadMoreContainer">
-
-        <button class="btnLoadMore">Load More</button>
-
-    </div>
 </div>
     <a href="imageupload.php" id="floatingBtn">+</a>
 </main>
@@ -103,6 +118,6 @@ if(!empty($_GET)) {
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

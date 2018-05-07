@@ -2,22 +2,25 @@
 $conn = new PDO('mysql:host=localhost; dbname=qi', 'root', '');
 //userID
 
+$email=$_POST['userName'];
 
-$commentUserID = $_POST['userid'];
+$commentUserID = $_POST['userID'];
 //commentID
-$commentImageID = $_POST['imageid'];
+$commentPostID = $_POST['postID'];
 //newComment
-if(isset($_POST['newcomment'])){
-    $commentText = $_POST['newcomment'];
+if(isset($_POST['newComment'])){
+    $commentText = $_POST['newComment'];
 }
 
 
 
 if(!empty($commentText)) {
-    $statement = $conn->prepare("INSERT INTO comments (commentuserid, commentimageid, comment) VALUES (:commentuserid, :commentimageid, : comment)");
+    $statement = $conn->prepare("INSERT INTO comments (commentuserid, comment, commentpostid, email) VALUES (:commentuserid, :comment, :commentpostid, :email)");
     $statement->bindValue(':commentuserid',$commentUserID);
-    $statement->bindValue(':commentimageid', $commentImageID);
     $statement->bindValue(':comment', $commentText);
-    $statement->execute();
+    $statement->bindValue(':commentpostid', $commentPostID);
+    $statement->bindValue(':email',$email);
+    $res=$statement->execute();
+    return $res;
 }
 ?>

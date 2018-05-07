@@ -1,6 +1,7 @@
 <?php
 include_once("includes/session.inc.php");
 include_once ("classes/User.class.php");
+include_once ("includes/nav.inc.php");
 
 $n=new User();
 $n->showAvatar();
@@ -82,40 +83,37 @@ if(!empty($_POST)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Account</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/settings.css">
 </head>
 <body>
 
-<?php include_once("includes/nav.inc.php"); ?>
+
 
 <div>
-    <div style="margin-top: 40px; class="editDetails">
-        <h1>Avatar uploaden</h1>
-        <img style="height: 50px;
-	width: 50px;
-	border-radius: 50%;" src="<?php echo $_SESSION['avatar'] ;?>" alt="avatar">
+
+    <div class="editProfile">
+
+        <img src="<?php echo $_SESSION['avatar'] ;?>" alt="avatar">
 
         <form class="formUpload" action="" enctype="multipart/form-data" method="post">
-            <label for="avatar">Avatar uploaden:</label>
+            <label for="avatar">Change profile picture:</label>
 
             <input type="file" name="file" id="avatar">
 
-            <input class="btnUpload" type="submit" name="upload" value="Upload">
+            <input class="btnUpload" type="submit" name="upload" value="Upload" id="upload">
         </form>
-        <?php echo $_SESSION['user'];?>
 
 
-        <h1>Profiel bewerken</h1>
+
+        <h1>Edit profile</h1>
 
         <form class="formDetails formPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-            <label for="email">E-mailadres:</label>
-            <input type="email" name="editEmail"></br>
+            <label for="email">Email:</label>
+            <input type="email" name="editEmail" placeholder="<?php echo $_SESSION['user'];?>" id="email"></br>
 
-            <label for="bio">Biografie:</label>
+            <label for="bio">Bio:</label>
             <textarea name="editBio" maxlength="150" id="bio" cols="30" rows="5"></textarea></br>
 
             <?php
@@ -124,16 +122,16 @@ if(!empty($_POST)){
             }
             ?>
 
-            <h1>Wachtwoord wijzigen</h1>
+            <h1>Change password</h1>
 
-            <label for="oldpassword">oud wachtwoord:</label>
-            <input type="password" name="oldpassword"></br>
 
-            <label for="newpassword">Nieuw wachtwoord:</label>
-            <input type="password" name="newPassword"></br>
+            <input type="password" name="oldpassword" placeholder="Old password..."></br>
 
-            <label for="confirmnewpassword">Nieuw wachtwoord bevestigen:</label>
-            <input type="password" name="confirmNewPassword"></br>
+
+            <input type="password" name="newPassword" placeholder="New password..."></br>
+
+
+            <input type="password" name="confirmNewPassword" placeholder="Repeat new password"></br>
 
             <?php
             if( isset($passwordSucces) )
@@ -150,8 +148,9 @@ if(!empty($_POST)){
             }
             ?>
 
-            <input class="submitEdit" name="update" type="submit" value="Gegevens wijzigen">
+            <input class="submitEdit" name="update" type="submit" value="Submit" id="submit">
         </form>
     </div>
+</div>
 </body>
 </html>

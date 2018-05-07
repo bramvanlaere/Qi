@@ -1,32 +1,65 @@
 $(document).ready(function(){
 
+    $('.btnUnfollow').click(function(){
+        $.ajax({
+            type : 'POST',
+            url  : 'includes/unfollow.inc.php',
+            data : $(this).serialize(),
+            success : function(data)
+            {
+                console.log(data);
+                console.log("succes!");
+                $(".btnUnfollow").attr("class", "btnFollow");
+                $(".btnFollow").html("Follow");
+
+            }
+        });
+
+    });
+
+    $('.btnFollow').click(function(){
+        $.ajax({
+            type : 'POST',
+            url  : 'includes/follow.inc.php',
+            data : $(this).serialize(),
+            success : function(data)
+            {
+                console.log(data);
+                console.log("succes!");
+                $(".btnFollow").attr("class", "btnUnfollow");
+                $(".btnUnfollow").html("FOLLOWING");
+
+            }
+        });
+
+    });
+
     $('.comment-btn-submit').click( function(e){
         console.log("comment");
+        var postID = $(this).val();
+        var comment = $(".commentField"+postID).val();
+        var userID = $(".userID").val();
+        var userName = $(".username").val();
+        console.log(userName+postID+comment+userID);
 
-        var _postID = $(this).val();
-        console.log(_postID);
-        var _comment = $(".commentField"+_postID).val();
-        var _userID = $(".userID").val();
-        var _imageID = $(".imageID"+_postID).val();
+        if (comment.length > 0 && userID != null){
 
+            $(".commentsList"+postID).append("<li><a href='profile.php?userID=>"+ userID +"'>"+userName+"</a>" +
+                "<span> "+comment+"</span></li>");
 
-        if (_comment.length > 0 && _userID != null){
-
-            $(".commentsList"+_postID).append("<li><a href='profile.php?userID=>"+ _userID +"'>"+_userName+"</a>" +
-                "<span> "+_comment+"</span></li>");
 
             $.ajax({
                 type: 'POST',
                 url: 'includes/comment.inc.php',
-                data: {newcomment: _comment, userid: _userID, imageid: _postID},
+                data: {newComment: comment, userID: userID, userName: userName, postID: postID},
                 succes: function(data)
                 {
-
                     console.log(data);
                 }
 
             });
         }
+        var comment = $('.commentField').val("");
 
         e.preventDefault();
         return false;
@@ -34,17 +67,6 @@ $(document).ready(function(){
 
     });
 
-    $('.delete').click(function(){
-        $.ajax({
-            type: 'POST',
-            url: 'includes/deletePost.inc.php',
-            data: $(this).serialize(),
-            success: function(data)
-            {
-                window.location.href='index.php';
-            }
-        });
-    });
 
     $('.likeHeart').on('click', function(e){
         console.log('clicked');
@@ -65,7 +87,9 @@ $(document).ready(function(){
             $(this).attr("class", "likeHeart btnUnlike");
             return false;
         }
-        else
+
+
+        if($(this).is('.btnUnlike'))
         {
             console.log('unliked');
             $.ajax({

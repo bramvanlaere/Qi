@@ -74,7 +74,7 @@ $i = "";
             </div>
             <div class="commentFeed">
                 <ul class="commentsList">
-                    <li><a href="profile.php?userID=<?php echo $comment['commentUserID']; ?>">
+                    <li><a href="profile.php?userID=<?php echo $comment['commentuserid']; ?>">
                             <?php echo $username['username']; ?>
                         </a>
                         <span class="comment-text"><?php echo $description['description']; ?></span>
