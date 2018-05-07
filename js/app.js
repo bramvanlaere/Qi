@@ -143,5 +143,45 @@ $(document).ready(function(){
                 }
             }
         });
+    });
+
+    $('.btn-btn-primary-report').click(function (e) {
+        var imageID = $(this).attr("value");
+        console.log("report");
+        console.log(imageID);
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: 'includes/makeInappropriate.php',
+            data:{newReport : imageID},
+            success : function (data) {
+                console.log(data);
+            }
+        });
+        $(".btn-btn-primary-report").attr("class", "btn-btn-primary-unreport");
+        $(".btn-btn-primary-unreport").html("unreport");
+
+
+
+    })
+
+    $('.btn-btn-primary-unreport').click(function (e) {
+        var imageID = $(this).attr("value");
+        console.log("unreport");
+        console.log(imageID);
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: 'includes/delInappropriate.php',
+            data:{delReport : imageID},
+            success : function (data) {
+                console.log(data);
+            }
+        });
+
+        $(".btn-btn-primary-unreport").attr("class", "btn-btn-primary-report");
+        $(".btn-btn-primary-report").html("report");
     })
 });

@@ -55,14 +55,32 @@
 
         <?php foreach($r as $post): ?>
         <?php $i++ ?>
+            <?php
+            $report = new Post();
+
+            $reportCheck = $report->userInappropriate($post['id']);
+
+
+            if($reportCheck == 0)
+            {
+
+                $class = "report";
+            }
+            else
+            {
+
+                $class = "unreport";
+            }
+
+            ?>
+
             <?php if (Post::countInappropriate($post['id']) === false):?>
             <div class="post__user" >
                 <form action="" method="post">
-                    <?php if(Post::userInappropriate($post['id'])==0): ?>
-                        <button class="btn btn-primary" name="report" id="report">report</button>
-                    <?php else: ?>
-                        <button class="btn btn-primary" name="undoreport" id="report" style="background-color: red;">undo report</button>
-                    <?php endif; ?>
+
+                        <button class="btn-btn-primary-<?php echo $class; ?>" name="report" id="report" value="<?php echo $post['id'] ?>"><?php echo $class; ?></button>
+
+
                     <span><?php echo Post::countInappropriate($post['id']); ?></span>
                     <input type="hidden" name="postid" id="postid" value="<?php echo $post['id']?>">
                 </form>
