@@ -72,6 +72,7 @@
             <div class="">
                 <img class="" src="<?php echo $post['filelocation']?>" alt="">
              </div>
+                <span><?php echo $post['besch']?></span>
             <p>
                 <?php
                 $likeCounter = new postDetails();
@@ -90,34 +91,31 @@
                 ?>
             </p>
             <div style="padding: auto;">
-                <ul class="commentsList<?php echo $i; ?>">
+                <ul class="commentsList<?php echo $post['id']; ?>">
                     <?php
                     $singlePost = new postDetails();
-                    $email = $singlePost->getEmail($post['id']);
+                    $email = $singlePost->GetEmail($post['id']);
                     $comments = $singlePost->getComments($post['id']);
                     ?>
                     <input type="hidden" class="imageID<?php echo $i; ?>" value="<?php echo $post['id']; ?>">
                     <input type="hidden" class="userID" value="<?php echo $_SESSION['userid']; ?>">
-                    <input type="hidden" class="email" value="<?php echo $_SESSION['user']; ?>">
+                    <input type="hidden" class="username" value="<?php echo $_SESSION['user']; ?>">
 
-                    <a href="profile.php?userID=<?php echo $post['imageuserid']; ?>"></a>
+
+
 
                     <?php foreach( $comments as $comment): ?>
                         <li>
                             <a href="profile.php?userID=<?php echo $comment['commentuserid']; ?>">
                                 <?php
                                 $user = new User();
-                                $r=$user->getProfile($comment['commentuserid']);
-                                $email = $r['email'];
-                                echo $email;
+                                $email=$user->getProfile($comment['commentuserid']);
+                                echo $email['email'];
                                 ?></a>
                             <span class="comment-text"><?php echo htmlspecialchars($comment['comment']); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <div class="card-text">
-                    <p><?php echo $post['besch']?></p>
-                </div>
                 <div class="feedFooterBottom">
                     <?php
                     $like = new postDetails();
@@ -142,8 +140,8 @@
             <form>
                 <img class="likeHeart <?php echo $class; ?> "src="<?php echo $source; ?>" alt="like"
                      value="<?php echo $post['id'] ?>">
-            <input class="commentField<?php echo $i; ?>" type="text" name="commentField" placeholder="Add a comment...">
-            <input class="comment-btn-submit" type="submit" value="<?php echo $i; ?>"
+            <input class="commentField<?php echo $post['id']; ?>" type="text" name="commentField" placeholder="Add a comment...">
+            <input class="comment-btn-submit" type="submit" value="<?php echo $post['id']; ?>"
                    style="position: absolute; left: -9999px"/>
             </form>
                 <p style="color: grey;font-size: small;">

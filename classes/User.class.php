@@ -447,6 +447,22 @@ class User{
         $followCount = $getFollows->rowCount();
         return $followCount;
     }
+    public function followCheck(){
+        $conn=Db::getInstance();
+        $targetUserID = $_SESSION['targetUserID'];
+        $userid = $_SESSION['userid'];
+        $getFollowInfo = $conn->prepare("select * from friendlist where userid = :userid and friendid =  :targetUserID");
+        $getFollowInfo->bindValue(":userid", $userid);
+        $getFollowInfo->bindValue(":targetUserID", $targetUserID);
+        $getFollowInfo->execute();
+        $count = $getFollowInfo->rowCount();
+        if($count > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 
 

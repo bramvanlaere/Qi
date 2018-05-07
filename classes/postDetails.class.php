@@ -25,9 +25,7 @@ class postDetails{
     public function getPostHour($id){
         $conn = Db::getInstance();
 
-        $postTime = $conn->prepare("SELECT timestamp
-                                   FROM posts
-                                   WHERE id = :id");
+        $postTime = $conn->prepare("SELECT timestamp FROM posts WHERE id = :id");
         $postTime->bindValue(':id', $id);
         $postTime->execute();
         $postTime = $postTime->fetch(PDO::FETCH_ASSOC);
@@ -101,7 +99,7 @@ class postDetails{
 
     public function getComments($postid){
         $conn = Db::getInstance();
-        $getComments = $conn->prepare("SELECT * from comments where commentimageid = :postid");
+        $getComments = $conn->prepare("SELECT * from comments where commentpostid = :postid");
         $getComments->bindValue(':postid', $postid);
         $getComments->execute();
         $comments = $getComments->fetchAll();
