@@ -51,11 +51,29 @@ $i = "";
 <?php include_once ("includes/nav.inc.php")?>
 <div style="padding-top: 100px;">
             <img src="<?php echo $image['filelocation']; ?>" alt="">
-            <?php /*$colors->getColors($image['filelocation'],$_SESSION['imageID']);*/?>
+            <?php
+
+            if($colors->checkPostidColor($_SESSION['imageID'])){
+
+                $colors->SaveColors($image['filelocation'],$_SESSION['imageID']);
+
+            }
+            else{
+
+            }
+            $c=$colors->showColors($_SESSION['imageID']);
+
+
+
+            ?>
 
 </div>
                 <a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><img style="height: 40px;width:40px;border-radius: 40px; margin-top:10px; display: inline-block;" src="<?php echo $avatar['avatar']; ?>" alt=""></a>
                 <a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><p class="name<?php echo $i ?> namePostDetail"><?php echo $email['email']; ?></p></a>
+<?php foreach ($c as $col){
+    echo "<div style='float: right; width: 20px;height: 20px; background-color:". $col['color']."'></div>";
+
+}?>
 <hr>
 
                 <p class="likes"><?php
@@ -74,6 +92,7 @@ $i = "";
                     ?>
                 </p>
                 <p class="timestamp"><?php echo $postTime ?></p>
+
             </div>
             <div class="commentFeed">
                 <ul class="commentsList">
