@@ -158,8 +158,8 @@ $(document).ready(function(){
                 console.log(data);
             }
         });
-        $(".btn-btn-primary-report").attr("class", "btn-btn-primary-unreport");
-        $(".btn-btn-primary-unreport").html("unreport");
+        $(this).attr("class", "btn-btn-primary-unreport");
+        $(this).html("unreport");
 
 
 
@@ -180,7 +180,7 @@ $(document).ready(function(){
             }
         });
 
-        $(".btn-btn-primary-unreport").attr("class", "btn-btn-primary-report");
-        $(".btn-btn-primary-report").html("report");
+        $(this).attr("class", "btn-btn-primary-report");
+        $(this).html("report");
     })
 });

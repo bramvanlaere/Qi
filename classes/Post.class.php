@@ -217,16 +217,35 @@ class Post
 
     }
 
-    public function getColors($filelocation,$postid) {
+    public function SaveColors($filelocation,$postid) {
         $conn = Db::getInstance();
         $palette = Palette::fromFilename($filelocation);
-        $top5=$palette->getMostUsedColors(5);
-            foreach($top5 as $color => $lel) {
-                $statement = $conn->prepare("insert into colorpost (postid, color) VALUES (:postid, :color)");
-                $statement->bindValue(":postid", $postid);
-                $statement->bindValue(":color", $lel);
-                $statement->execute();}
+        $extractor = new ColorExtractor($palette);
+        $colors = $extractor->extract(5);
+
+        foreach($colors as $color) {
+            $b=Color::fromIntToHex($color);
+            $statement = $conn->prepare("insert into colorpost (postid, color) VALUES (:postid,:color)");
+            $statement->bindValue(":postid", $postid);
+            $statement->bindValue(":color", $b);
+            $statement->execute();
+        }
     }
+
+    public function checkPostidColor($postid){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("SELECT * FROM colorpost WHERE postid = :postid");
+        $statement->bindParam(":postid",$postid);
+        $statement->execute();
+        if($statement->rowCount() >= 1){
+            return false;
+        }
+        else{
+            return true;
+
+    }
+    }
+
 
     public function showColors($postid) {
         $conn = Db::getInstance();

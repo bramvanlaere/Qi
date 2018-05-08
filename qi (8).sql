@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 08 mei 2018 om 10:57
+-- Gegenereerd op: 08 mei 2018 om 14:04
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -28,8 +28,52 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `colorpost` (
   `postid` int(11) NOT NULL,
-  `color` int(11) NOT NULL
+  `color` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `colorpost`
+--
+
+INSERT INTO `colorpost` (`postid`, `color`) VALUES
+(87, '#EFCDB4'),
+(87, '#0F1620'),
+(87, '#619411'),
+(87, '#91543F'),
+(87, '#FF4871'),
+(85, '#DFEAFC'),
+(85, '#A7B500'),
+(85, '#EFD9C1'),
+(85, '#FC0903'),
+(85, '#7C7726'),
+(90, '#E2C2AD'),
+(90, '#946B55'),
+(90, '#C8CAF0'),
+(90, '#6C2DAF'),
+(90, '#842346'),
+(91, '#EAF4EB'),
+(91, '#000000'),
+(91, '#DABE12'),
+(91, '#5B0000'),
+(91, '#FE0900'),
+(74, '#DCB163'),
+(74, '#6C7F9F'),
+(74, '#AE6D2D'),
+(74, '#AEBECE'),
+(74, '#60491D'),
+(71, '#000000'),
+(71, '#E4E4E4'),
+(71, '#767676'),
+(82, '#956439'),
+(82, '#E29346'),
+(82, '#4273AB'),
+(82, '#402713'),
+(82, '#100E19'),
+(70, '#880201'),
+(70, '#E4EBFE'),
+(70, '#FD8900'),
+(70, '#680041'),
+(70, '#01215E');
 
 -- --------------------------------------------------------
 
@@ -111,7 +155,7 @@ CREATE TABLE `inappropriate` (
 --
 
 INSERT INTO `inappropriate` (`id`, `postid`, `userid`) VALUES
-(27, 87, 48);
+(40, 85, 48);
 
 -- --------------------------------------------------------
 
@@ -137,7 +181,6 @@ INSERT INTO `likes` (`likeid`, `likeimageid`, `likesendid`, `likereceiveid`) VAL
 (88, 71, 48, 48),
 (93, 70, 48, 5),
 (94, 74, 48, 48),
-(95, 90, 48, 48),
 (96, 91, 5, 5),
 (97, 90, 5, 48),
 (98, 90, 54, 48),
@@ -262,12 +305,12 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT voor een tabel `friendlist`
 --
 ALTER TABLE `friendlist`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT voor een tabel `inappropriate`
 --
 ALTER TABLE `inappropriate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT voor een tabel `likes`
 --
