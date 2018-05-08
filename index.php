@@ -5,6 +5,7 @@
     include_once ("classes/postDetails.class.php");
     include_once ("classes/Post.class.php");
 
+
     $userid = $_SESSION['userid'];
     $f = new User();
     $r=$f->getFeed($userid);
@@ -45,6 +46,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/cssgram.min.css">
     <title>Qi</title>
 </head>
 <body>
@@ -81,7 +83,7 @@
 
              </div>
             <div class="">
-                <img class="" src="<?php echo $post['filelocation']?>" alt="">
+                <img class="<?php echo $post['filter'] ?>" src="<?php echo $post['filelocation']?>" alt="">
              </div>
                 <span><?php echo $post['besch']?></span>
             <p>

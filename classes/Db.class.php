@@ -5,7 +5,7 @@ class Db{
 
     public static function getInstance(){
         if(self::$conn == null){
-            self::$conn = new PDO('mysql:host=localhost;dbname=qi','root','');
+            self::$conn = new PDO('mysql:host=localhost;dbname=qi','root','root');
             return self::$conn;
         }
         else{

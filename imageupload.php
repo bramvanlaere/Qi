@@ -7,11 +7,12 @@ if(isset($_SESSION['loggedin'])){
     if(!empty($_POST)){
 
         $besch=$_POST["besch"];
-
+        $filter = $_POST["slctFilter"];
 
 
         $p = new Post();
         $p->moveImage();
+        $p->setFilter($filter);
         $p->setBesch($besch);
         $p->savePost();
         $p ->setClassName($className);
@@ -144,42 +145,44 @@ else{
         }
         ?>
 
+        <div class="custom-select" style="width:200px;">
+            <select id="slctFilter" name="slctFilter" onchange="filterGo(this.id)">
+                <option value="0">Select Filter:</option>
+                <option value="_1997">1977</option>
+                <option value="aden">Aden</option>
+                <option value="brannan">Brannan</option>
+                <option value="brooklyn">Brooklyn</option>
+                <option value="clarendon">Clarendon</option>
+                <option value="earlybird">Earlybird</option>
+                <option value="gingham">Gingham</option>
+                <option value="hudson">Hudson</option>
+                <option value="inkwell">Inkwell</option>
+                <option value="kelvin">Kelvin</option>
+                <option value="lark">Lark</option>
+                <option value="lofi">Lofi</option>
+                <option value="maven">Maven</option>
+                <option value="mayfair">Mayfair</option>
+                <option value="moon">Moon</option>
+                <option value="nashville">Nashville</option>
+                <option value="perpetua">Perpetua</option>
+                <option value="reyes">Reyes</option>
+                <option value="rise">Rise</option>
+                <option value="slumber">Slumber</option>
+                <option value="stinson">Stinson</option>
+                <option value="toaster">Toaster</option>
+                <option value="valencia">Valencia</option>
+                <option value="walden">Walden</option>
+                <option value="willow">Willow</option>
+                <option value="xpro2">Xpro2</option>
+            </select>
+        </div>
+
     </form>
 
 
 
     <img class="" id="output" style="width:400px;"/>
-    <div class="custom-select" style="width:200px;">
-        <select id="slctFilter" name="slctFilter" onchange="filterGo(this.id)">
-            <option value="0">Select Filter:</option>
-            <option value="_1997">1977</option>
-            <option value="aden">Aden</option>
-            <option value="brannan">Brannan</option>
-            <option value="brooklyn">Brooklyn</option>
-            <option value="clarendon">Clarendon</option>
-            <option value="earlybird">Earlybird</option>
-            <option value="gingham">Gingham</option>
-            <option value="hudson">Hudson</option>
-            <option value="inkwell">Inkwell</option>
-            <option value="kelvin">Kelvin</option>
-            <option value="lark">Lark</option>
-            <option value="lofi">Lofi</option>
-            <option value="maven">Maven</option>
-            <option value="mayfair">Mayfair</option>
-            <option value="moon">Moon</option>
-            <option value="nashville">Nashville</option>
-            <option value="perpetua">Perpetua</option>
-            <option value="reyes">Reyes</option>
-            <option value="rise">Rise</option>
-            <option value="slumber">Slumber</option>
-            <option value="stinson">Stinson</option>
-            <option value="toaster">Toaster</option>
-            <option value="valencia">Valencia</option>
-            <option value="walden">Walden</option>
-            <option value="willow">Willow</option>
-            <option value="xpro2">Xpro2</option>
-        </select>
-    </div>
+
 
 
 
