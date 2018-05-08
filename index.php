@@ -8,7 +8,7 @@
     $userid = $_SESSION['userid'];
     $f = new User();
     $r=$f->getFeed($userid);
-    $_SESSION['offset'] = 0;
+    $a=new postDetails();
 
 
 
@@ -51,10 +51,7 @@
 <?php include_once("includes/nav.inc.php"); ?>
 
 <div class="indexFeed col-lg-4 mx-auto" style="margin-top: 80px;font-family: Oswald;">
-    <?php $i = 0 ?>
-
-        <?php foreach($r as $post): ?>
-        <?php $i++ ?>
+        <?php foreach($r as $post): $b=$a->getAvatar($post['id']); ?>
             <?php
             $report = new Post();
 
@@ -73,19 +70,15 @@
             }
 
             ?>
-
             <?php if (Post::countInappropriate($post['id']) === false):?>
             <div class="post__user" >
                 <form action="" method="post">
-
-                        <button class="btn-btn-primary-<?php echo $class; ?>" name="report" id="report" value="<?php echo $post['id'] ?>"><?php echo $class; ?></button>
-
-
+                    <button  style="border-radius: 15px; color: whitesmoke; background-color: #c61c18; float: right;" class="btn-btn-primary-<?php echo $class; ?>" name="report" id="report" value="<?php echo $post['id'] ?>"><?php echo $class; ?></button>
                     <span><?php echo Post::countInappropriate($post['id']); ?></span>
                     <input type="hidden" name="postid" id="postid" value="<?php echo $post['id']?>">
                 </form>
-                <h4 class=""><a class="" href="profile.php?userID=<?php echo $post['imageuserid'];?>"><?php echo $post['user']?></a></h4>
-                <img src="<?php echo $post['avatar']?>" alt="">
+                <h4 class=""><img style="height: 40px;width:40px;border-radius: 40px; margin-right:30px; margin-top: 10px;" src="<?php echo $b['avatar'];?>"><a class="" href="profile.php?userID=<?php echo $post['imageuserid'];?>"><?php echo $post['user']?></a></h4>
+
              </div>
             <div class="">
                 <img class="" src="<?php echo $post['filelocation']?>" alt="">
@@ -172,6 +165,7 @@
 
 
             <?php endif?>
+            
             <hr>
 <?php endforeach;?>
     </div>

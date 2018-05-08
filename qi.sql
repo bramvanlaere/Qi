@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 07 mei 2018 om 10:53
+-- Gegenereerd op: 08 mei 2018 om 10:57
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -19,6 +19,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `qi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `colorpost`
+--
+
+CREATE TABLE `colorpost` (
+  `postid` int(11) NOT NULL,
+  `color` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -50,7 +61,11 @@ INSERT INTO `comments` (`commentid`, `commentuserid`, `comment`, `commentpostid`
 (8, 48, 'lol', 87, '2018-05-06 10:06:17', 'test1234@bram.com'),
 (9, 48, 'I honestly love this picture so much', 90, '2018-05-06 14:11:50', 'test1234@bram.com'),
 (10, 5, 'yeah me to me man ! you are the best student #not', 90, '2018-05-07 08:35:49', 'joris@joris.com'),
-(11, 54, 'where is this ? ', 90, '2018-05-07 08:48:46', 'lel@whut.com');
+(11, 54, 'where is this ? ', 90, '2018-05-07 08:48:46', 'lel@whut.com'),
+(12, 48, 'thanks guys', 90, '2018-05-07 09:34:52', 'test1234@bram.com'),
+(13, 48, 'love this post !', 91, '2018-05-07 09:48:29', 'test1234@bram.com'),
+(14, 0, 'test', 0, '2018-05-08 07:04:34', '<br />\n<b>Notice</b>:  Undefined index: username in <b>/Applications/XAMPP/xamppfiles/htdocs/Qi-master-css/postDetail.php</b> on line <b>111</b><br />\n'),
+(15, 48, 'test', 0, '2018-05-08 07:05:38', 'test1234@bram.com');
 
 -- --------------------------------------------------------
 
@@ -75,9 +90,9 @@ INSERT INTO `friendlist` (`Id`, `userid`, `friendid`) VALUES
 (8, 48, 3),
 (12, 48, 45),
 (13, 48, 49),
-(44, 48, 5),
 (45, 5, 53),
-(46, 54, 48);
+(46, 54, 48),
+(47, 48, 5);
 
 -- --------------------------------------------------------
 
@@ -96,12 +111,7 @@ CREATE TABLE `inappropriate` (
 --
 
 INSERT INTO `inappropriate` (`id`, `postid`, `userid`) VALUES
-(1, 89, 5),
-(5, 89, 48),
-(6, 87, 51),
-(7, 85, 51),
-(10, 89, 51),
-(11, 71, 5);
+(27, 87, 48);
 
 -- --------------------------------------------------------
 
@@ -130,7 +140,8 @@ INSERT INTO `likes` (`likeid`, `likeimageid`, `likesendid`, `likereceiveid`) VAL
 (95, 90, 48, 48),
 (96, 91, 5, 5),
 (97, 90, 5, 48),
-(98, 90, 54, 48);
+(98, 90, 54, 48),
+(99, 91, 48, 5);
 
 -- --------------------------------------------------------
 
@@ -164,7 +175,6 @@ INSERT INTO `posts` (`id`, `filelocation`, `imageuserid`, `besch`, `user`, `time
 (85, 'files/48-1525183994.jpg', 48, 'this an image ', 'test1234@bram.com', '2018-05-01 14:13:15'),
 (87, 'files/48-1525247144.jpg', 48, 'test lel', 'test1234@bram.com', '2018-05-02 07:45:44'),
 (88, 'files/53-1525259316.jpg', 53, 'fret', 'thomaslaeremans@hotmail.com', '2018-05-02 11:08:36'),
-(89, 'files/5-1525290082.jpg', 5, 'ddedee', 'joris@joris.com', '2018-05-02 19:41:23'),
 (90, 'files/48-1525615718.jpg', 48, 'marina bay you know !', 'test1234@bram.com', '2018-05-06 14:08:40'),
 (91, 'files/5-1525682126.jpg', 5, 'because I haven\'t posted in a while, ', 'joris@joris.com', '2018-05-07 08:35:27');
 
@@ -247,27 +257,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT voor een tabel `friendlist`
 --
 ALTER TABLE `friendlist`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT voor een tabel `inappropriate`
 --
 ALTER TABLE `inappropriate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT voor een tabel `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `likeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --

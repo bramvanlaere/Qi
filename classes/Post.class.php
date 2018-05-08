@@ -1,5 +1,12 @@
 <?php
 include_once ('Db.class.php');
+
+require 'vendor/autoload.php';
+
+    use League\ColorExtractor\Color;
+    use League\ColorExtractor\ColorExtractor;
+    use League\ColorExtractor\Palette;
+
 class Post
 {
     private $image;
@@ -83,9 +90,9 @@ class Post
         $fileActualExt=strtolower(end($fileExt));
         $allowed=array('jpg','jpeg','png');
         if(in_array($fileActualExt,$allowed)){
-
             move_uploaded_file($fileTmpName, $filePath);
             $this->cropimage($filePath,"400");
+
             $this->filePath=$filePath;
 
 
@@ -209,6 +216,26 @@ class Post
         return $res;
 
     }
+
+    public function getColors($filelocation,$postid) {
+        $conn = Db::getInstance();
+        $palette = Palette::fromFilename($filelocation);
+        $top5=$palette->getMostUsedColors(5);
+            foreach($top5 as $color => $lel) {
+                $statement = $conn->prepare("insert into colorpost (postid, color) VALUES (:postid, :color)");
+                $statement->bindValue(":postid", $postid);
+                $statement->bindValue(":color", $lel);
+                $statement->execute();}
+    }
+
+    public function showColors($postid) {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM colorpost WHERE postid = :postid");
+        $statement->bindParam(":postid", $postid);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+         }
+
 
 
 

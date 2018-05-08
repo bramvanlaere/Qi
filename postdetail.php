@@ -2,6 +2,13 @@
 include_once ("includes/session.inc.php");
 include_once ("classes/postDetails.class.php");
 include_once ("classes/user.class.php");
+include_once ("classes/Post.class.php");
+
+require 'vendor/autoload.php';
+
+use League\ColorExtractor\Color;
+use League\ColorExtractor\ColorExtractor;
+use League\ColorExtractor\Palette;
 
 $_SESSION['imageID'] = $_GET['imageID'];
 
@@ -15,6 +22,7 @@ if(isset($_GET['imageID'])){
     $userID = $post->getUserID($_GET['imageID']);
     $description = $post->getDescription($_GET['imageID']);
     $comments = $post->getComments($_GET['imageID']);
+    $colors= new Post();
 
     $likeCheck = $post->likeCheck($_GET['imageID']);
     if($likeCheck)
@@ -37,24 +45,19 @@ $i = "";
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/profile.css">
 </head>
 
-<body>
+<body class="col-lg-4 mx-auto" style="border-bottom: #c61c18 solid 4px; font-family: Oswald; margin-bottom: 30px;">
 <?php include_once ("includes/nav.inc.php")?>
-<div class="postDetail">
-    <div class="innerLeft">
+<div style="padding-top: 100px;">
             <img src="<?php echo $image['filelocation']; ?>" alt="">
+            <?php /*$colors->getColors($image['filelocation'],$_SESSION['imageID']);*/?>
 
-    </div>
-    <div class="innerRight">
-        <div class="innerRightContainer">
-            <div class="innerRightHeader">
-                <a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><img class="avatarPostDetail" src="<?php echo $avatar['avatar']; ?>" alt=""></a>
+</div>
+                <a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><img style="height: 40px;width:40px;border-radius: 40px; margin-top:10px; display: inline-block;" src="<?php echo $avatar['avatar']; ?>" alt=""></a>
                 <a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><p class="name<?php echo $i ?> namePostDetail"><?php echo $email['email']; ?></p></a>
-            </div>
-            <div class="innerRightSecondHeader">
+<hr>
+
                 <p class="likes"><?php
 
                     if($likeCount == 0) {
@@ -75,44 +78,30 @@ $i = "";
             <div class="commentFeed">
                 <ul class="commentsList">
                     <li><a href="profile.php?userID=<?php echo $comment['commentuserid']; ?>">
-                            <?php echo $username['username']; ?>
+                            <?php echo $email['email']; ?>
                         </a>
-                        <span class="comment-text"><?php echo $description['description']; ?></span>
+                        <span class="comment-text"><?php echo $description['besch']; ?></span>
                     </li>
                     <?php foreach( $comments as $comment): ?>
                         <li>
-                            <a href="profile.php?userID=<?php echo $comment['commentUserID']; ?>">
+                            <a href="profile.php?userID=<?php echo $comment['commentuserid']; ?>">
                                 <?php
-                                $user = new Users();
-                                $user->getProfile($comment['commentUserID']);
-                                $username = $user->Username;
-                                echo $username;
+                                $user = new User();
+                                $email=$user->getProfile($comment['commentuserid']);;
+                                echo $email['email'];
                                 ?></a>
-                            <span class="comment-text"><?php echo htmlspecialchars($comment['commentText']); ?></span>
+                            <span class="comment-text"><?php echo htmlspecialchars($comment['comment']); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
-            <div class="innerRightFooter">
-                <form id="commentForm" class="innerRightFooterForm" action="" method="post">
-                    <img id="heart" class="likeHeart <?php echo $class ?>" src="<?php echo $source ?>" alt="like"
-                         value="<?php echo $_GET['imageID']; ?>">
-                    <input class="commentField commentField<?php echo $i ?>" type="text" name="commentField" placeholder="Add a comment...">
-                    <input class="comment-btn-submit" type="submit" style="position: absolute; left: -9999px" value="<?php echo $i ?>"/>
-                </form>
 
-                <span class="glyphicon glyphicon-trash" id="<?php echo $visible; ?>" aria-hidden="true" title="Verwijder je foto"></span>
-
-            </div>
-        </div>
-    </div>
-</div>
-<input type="hidden" class="imageID<?php echo $i; ?>" value="<?php echo $_GET['imageID'].$i; ?>">
-<input type="hidden" class="userID" value="<?php echo $_SESSION['userID']; ?>">
-<input type="hidden" class="username" value="<?php echo $_SESSION['username']; ?>">
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="js/scripts.js">
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="js/app.js">
 
 
 </script>

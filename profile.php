@@ -63,7 +63,7 @@ if($_SESSION['userid']===$_SESSION['targetUserID']){
 <body>
 <?php include_once ('includes/nav.inc.php');?>
 
-<div id="box">
+<div  style="padding-top: 120px; id="box">
 <div class="profileInfo">
     <img class="profilePhoto" src="<?php echo $avatar?>" alt="profile photo">
     <div class="profileDetails">

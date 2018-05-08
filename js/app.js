@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
     $('.btnUnfollow').click(function(){
         $.ajax({
             type : 'POST',
@@ -120,8 +121,7 @@ $(document).ready(function(){
 
                 if (parsed !== "No data") {
                     $('.indexFeed').append("<div class='post__user' >" +
-                        "<h4 class=''>" +
-                        "<a class='' href='profile.php?userID="+parsed.imageuserid+">'>" +
+                        "<h4><a class='' href='profile.php?userID="+parsed.imageuserid+">'>" +
                         ""+parsed.user+"</a></h4><img src='<?php echo $post['avatar']?>'>" +
                         "</div><div class=''> <img class='' src="+parsed.filelocation+">" +
                         "</div>" +
@@ -144,7 +144,6 @@ $(document).ready(function(){
             }
         });
     });
-
     $('.btn-btn-primary-report').click(function (e) {
         var imageID = $(this).attr("value");
         console.log("report");
@@ -164,7 +163,7 @@ $(document).ready(function(){
 
 
 
-    })
+    });
 
     $('.btn-btn-primary-unreport').click(function (e) {
         var imageID = $(this).attr("value");

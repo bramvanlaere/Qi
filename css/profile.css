@@ -283,15 +283,7 @@ button {
 figure{
     margin: 0;
 }
-#uploadPreview{
-    display: block;
-    width: 350px;
-    height: 350px;
-    object-fit: cover;
-}
-select{
-    display: block;
-}
+
 
 .postDetail{
     background-color: grey;
