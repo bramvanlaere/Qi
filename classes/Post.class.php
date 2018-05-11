@@ -14,6 +14,23 @@ class Post
     private $besch;
     private $postId;
     private $filter;
+    private $location;
+
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
 
     /**
      * @return mixed
@@ -179,12 +196,13 @@ class Post
             throw new exception("add a description please");
         } else {
             $conn = Db::getInstance();
-            $statement = $conn->prepare("insert into posts (filelocation,besch,user,imageuserid,filter) values (:filelocation, :besch,:user,:imageuserid,:filter)");
+            $statement = $conn->prepare("insert into posts (filelocation,besch,user,imageuserid,filter,location) values (:filelocation, :besch,:user,:imageuserid,:filter,:location)");
             $statement->bindParam(":filelocation", $this->filePath);
             $statement->bindParam(":besch", $this->besch);
             $statement->bindValue(":imageuserid", $_SESSION['userid']);
             $statement->bindParam(":user",$_SESSION['user']);
             $statement->bindParam(":filter",$this->getFilter());
+            $statement->bindParam(":location",$this->getLocation());
             $res = $statement->execute();
             if ($res = true) {
                 header('Location:index.php');

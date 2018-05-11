@@ -122,14 +122,10 @@ $(document).ready(function(){
                 if (parsed !== "No data") {
                     $('.indexFeed').append("<div class='post__user' >" +
                         "<h4><a class='' href='profile.php?userID="+parsed.imageuserid+">'>" +
-                        ""+parsed.user+"</a></h4><img src='<?php echo $post['avatar']?>'>" +
+                        ""+parsed.user+"</a></h4><img src=+parsed.avatar+>" +
                         "</div><div class=''> <img class='' src="+parsed.filelocation+">" +
                         "</div>" +
-                        "<p><?php$likeCounter = new postDetails();" +
-                        "$likes = $likeCounter->getLikes($post['id']);if($likes == 0) {echo 'No likes yet';}" +
-                        "elseif($likes == 1){echo $likes.' Like';}else{echo $likes.' Likes';} ?>" +
-                        " </p> " +
-                        "<div style='padding: auto;'> <div class='feedFooterBottom'> " +
+                        "<div style='padding: auto;'><div class='feedFooterBottom'> " +
                         "<?php$like = new postDetails();$likeCheck = $like->likeCheck($post['id']);if($likeCheck)" +
                         "{$source = 'images/heart_filled.png';$class = 'btnUnlike';}else{$source = 'images/heart_blank.png';$class = 'btnLike';} ?>" +
                         " </div> </div> " +
@@ -137,8 +133,7 @@ $(document).ready(function(){
                         " <div class='card-text'> <p><?php echo $post['besch']?></p> </div> <p style='color: grey;font-size: small;'> " +
                         "<?php$timestamp = new postDetails();$timestamp = $timestamp->getPostHour($post['id']);echo $timestamp; ?> </p> " +
                         "<div style='margin-bottom: 10%;' class='comments'> <form method='post'> <label for='comment'></label>" +
-                        " <input type='text' name='comments'> <button class='btn btn-dark' name='submit'>Comment</button> <hr> </form> </div>");
-                } else {
+                        " <input type='text' name='comments'> <button class='btn btn-dark' name='submit'>Comment</button> <hr> </form> </div>")
                     alert("There are no more images to load!");
                 }
             }

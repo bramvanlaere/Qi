@@ -42,8 +42,7 @@
 </head>
 <body>
 <div class="welcome">
-    <h1>Welcome to QI</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in condimentum nulla. Vestibulum eu scelerisque nibh. Nullam ligula mauris, aliquet.</p>
+    <img class=logo src="images/qilogo.jpg" alt="logoqi">
 </div>
 <div class="container">
 <h2>Login</h2>

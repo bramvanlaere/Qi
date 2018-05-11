@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 08 mei 2018 om 14:04
+-- Gegenereerd op: 11 mei 2018 om 12:25
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -73,7 +73,37 @@ INSERT INTO `colorpost` (`postid`, `color`) VALUES
 (70, '#E4EBFE'),
 (70, '#FD8900'),
 (70, '#680041'),
-(70, '#01215E');
+(70, '#01215E'),
+(72, '#880002'),
+(72, '#34000C'),
+(72, '#845600'),
+(72, '#D88B57'),
+(72, '#C4C8D1'),
+(73, '#E5E9EC'),
+(73, '#5C6C9D'),
+(73, '#1B1A20'),
+(73, '#98A4CC'),
+(73, '#9A8C71'),
+(93, '#E4AE8C'),
+(93, '#5F3D3B'),
+(93, '#335DB3'),
+(93, '#FF5877'),
+(93, '#18191E'),
+(94, '#EFCDB4'),
+(94, '#0F1620'),
+(94, '#619411'),
+(94, '#91543F'),
+(94, '#FF4871'),
+(75, '#956439'),
+(75, '#E29346'),
+(75, '#4273AB'),
+(75, '#402713'),
+(75, '#100E19'),
+(96, '#2E1B0C'),
+(96, '#9E6808'),
+(96, '#F6C509'),
+(96, '#DD9B78'),
+(96, '#333F4D');
 
 -- --------------------------------------------------------
 
@@ -109,7 +139,8 @@ INSERT INTO `comments` (`commentid`, `commentuserid`, `comment`, `commentpostid`
 (12, 48, 'thanks guys', 90, '2018-05-07 09:34:52', 'test1234@bram.com'),
 (13, 48, 'love this post !', 91, '2018-05-07 09:48:29', 'test1234@bram.com'),
 (14, 0, 'test', 0, '2018-05-08 07:04:34', '<br />\n<b>Notice</b>:  Undefined index: username in <b>/Applications/XAMPP/xamppfiles/htdocs/Qi-master-css/postDetail.php</b> on line <b>111</b><br />\n'),
-(15, 48, 'test', 0, '2018-05-08 07:05:38', 'test1234@bram.com');
+(15, 48, 'test', 0, '2018-05-08 07:05:38', 'test1234@bram.com'),
+(16, 48, 'this works', 93, '2018-05-09 08:37:14', 'test1234@bram.com');
 
 -- --------------------------------------------------------
 
@@ -184,7 +215,8 @@ INSERT INTO `likes` (`likeid`, `likeimageid`, `likesendid`, `likereceiveid`) VAL
 (96, 91, 5, 5),
 (97, 90, 5, 48),
 (98, 90, 54, 48),
-(99, 91, 48, 5);
+(99, 91, 48, 5),
+(100, 93, 48, 48);
 
 -- --------------------------------------------------------
 
@@ -198,28 +230,34 @@ CREATE TABLE `posts` (
   `imageuserid` int(11) NOT NULL,
   `besch` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `filter` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `posts`
 --
 
-INSERT INTO `posts` (`id`, `filelocation`, `imageuserid`, `besch`, `user`, `timestamp`) VALUES
-(70, 'files/5-1524493459.jpg', 5, 'route 66 ! #LA', 'joris@joris.com', '2018-05-01 08:51:04'),
-(71, 'files/48-1524493661.jpg', 48, 'nieuwe outfit #fashion #sunglasses', 'bram@test1234.com', '2018-05-01 08:51:04'),
-(72, 'files/5-1524560216.jpg', 5, 'kerstmis #lol', 'joris@joris.com', '2018-05-01 08:51:04'),
-(73, 'files/5-1524560318.jpg', 5, 'New York City of dreams #NYC', 'joris@joris.com', '2018-05-01 08:51:04'),
-(74, 'files/48-1524562066.jpg', 48, 'nieuwe schoenen ! #fashion', 'bram@test1234.com', '2018-05-01 08:51:04'),
-(75, 'files/48-1524562905.jpg', 48, 'fashion', 'bram@test1234.com', '2018-05-01 08:51:04'),
-(79, 'files/50-1524648247.jpg', 50, 'kerst', 'test@1234.com', '2018-05-01 08:51:04'),
-(82, 'files/48-1525097082.jpg', 48, 'test', 'test1234@bram.com', '2018-05-01 08:51:04'),
-(83, 'files/48-1525097099.jpg', 1, 'dddd', 'test1234@bram.com', '2018-05-01 14:25:12'),
-(85, 'files/48-1525183994.jpg', 48, 'this an image ', 'test1234@bram.com', '2018-05-01 14:13:15'),
-(87, 'files/48-1525247144.jpg', 48, 'test lel', 'test1234@bram.com', '2018-05-02 07:45:44'),
-(88, 'files/53-1525259316.jpg', 53, 'fret', 'thomaslaeremans@hotmail.com', '2018-05-02 11:08:36'),
-(90, 'files/48-1525615718.jpg', 48, 'marina bay you know !', 'test1234@bram.com', '2018-05-06 14:08:40'),
-(91, 'files/5-1525682126.jpg', 5, 'because I haven\'t posted in a while, ', 'joris@joris.com', '2018-05-07 08:35:27');
+INSERT INTO `posts` (`id`, `filelocation`, `imageuserid`, `besch`, `user`, `timestamp`, `filter`, `location`) VALUES
+(70, 'files/5-1524493459.jpg', 5, 'route 66 ! #LA', 'joris@joris.com', '2018-05-01 08:51:04', '', ''),
+(71, 'files/48-1524493661.jpg', 48, 'nieuwe outfit #fashion #sunglasses', 'bram@test1234.com', '2018-05-01 08:51:04', '', ''),
+(72, 'files/5-1524560216.jpg', 5, 'kerstmis #lol', 'joris@joris.com', '2018-05-01 08:51:04', '', ''),
+(73, 'files/5-1524560318.jpg', 5, 'New York City of dreams #NYC', 'joris@joris.com', '2018-05-01 08:51:04', '', ''),
+(74, 'files/48-1524562066.jpg', 48, 'nieuwe schoenen ! #fashion', 'bram@test1234.com', '2018-05-01 08:51:04', '', ''),
+(75, 'files/48-1524562905.jpg', 48, 'fashion', 'bram@test1234.com', '2018-05-01 08:51:04', '', ''),
+(79, 'files/50-1524648247.jpg', 50, 'kerst', 'test@1234.com', '2018-05-01 08:51:04', '', ''),
+(82, 'files/48-1525097082.jpg', 48, 'test', 'test1234@bram.com', '2018-05-01 08:51:04', '', ''),
+(83, 'files/48-1525097099.jpg', 1, 'dddd', 'test1234@bram.com', '2018-05-01 14:25:12', '', ''),
+(85, 'files/48-1525183994.jpg', 48, 'this an image ', 'test1234@bram.com', '2018-05-01 14:13:15', '', ''),
+(87, 'files/48-1525247144.jpg', 48, 'test lel', 'test1234@bram.com', '2018-05-02 07:45:44', '', ''),
+(88, 'files/53-1525259316.jpg', 53, 'fret', 'thomaslaeremans@hotmail.com', '2018-05-02 11:08:36', '', ''),
+(90, 'files/48-1525615718.jpg', 48, 'marina bay you know !', 'test1234@bram.com', '2018-05-06 14:08:40', '', ''),
+(91, 'files/5-1525682126.jpg', 5, 'because I haven\'t posted in a while, ', 'joris@joris.com', '2018-05-07 08:35:27', '', ''),
+(93, 'files/48-1525855025.jpg', 48, 'lel', 'test1234@bram.com', '2018-05-09 08:37:06', 'moon', ''),
+(94, 'files/48-1525856592.jpg', 48, 'test moon', 'test1234@bram.com', '2018-05-09 09:03:13', 'moon', ''),
+(95, 'files/48-1526026808.jpg', 48, 'do you know where I am at ?', 'test1234@bram.com', '2018-05-11 08:20:10', 'moon', ''),
+(96, 'files/48-1526028488.jpg', 48, 'do you know where I am at ?', 'test1234@bram.com', '2018-05-11 08:48:10', 'lofi', 'Tienen Atheneum, 3300 Tienen, BelgiÃ«');
 
 -- --------------------------------------------------------
 
@@ -300,27 +338,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT voor een tabel `friendlist`
 --
 ALTER TABLE `friendlist`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT voor een tabel `inappropriate`
 --
 ALTER TABLE `inappropriate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT voor een tabel `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `likeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --

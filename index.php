@@ -75,7 +75,7 @@
             <?php if (Post::countInappropriate($post['id']) === false):?>
             <div class="post__user" >
                 <form action="" method="post">
-                    <button  style="border-radius: 15px; color: whitesmoke; background-color: #c61c18; float: right;" class="btn-btn-primary-<?php echo $class; ?>" name="report" id="report" value="<?php echo $post['id'] ?>"><?php echo $class; ?></button>
+                    <button  style="border-radius: 15px; color: whitesmoke; background-color: #c61c18; float: right; border: none;" class="btn-btn-primary-<?php echo $class; ?>" name="report" id="report" value="<?php echo $post['id'] ?>"><?php echo $class; ?></button>
                     <span><?php echo Post::countInappropriate($post['id']); ?></span>
                     <input type="hidden" name="postid" id="postid" value="<?php echo $post['id']?>">
                 </form>
@@ -83,7 +83,7 @@
 
              </div>
             <div class="">
-                <img class="<?php echo $post['filter'] ?>" src="<?php echo $post['filelocation']?>" alt="">
+                <img style="margin-left: -19px;" class="<?php echo $post['filter'];?>" src="<?php echo $post['filelocation']?>" alt="">
              </div>
                 <span><?php echo $post['besch']?></span>
             <p>
@@ -174,7 +174,7 @@
 </div>
 
 <footer>
-<button class="btnLoadMore">Load More</button>
+<button style="border: none; background-color:grey;font-family: Oswald;color: whitesmoke; margin-left: 50%;margin-right: 50%;" class="btnLoadMore btn btn-dark">Load More</button>
 </footer>
 
     <script

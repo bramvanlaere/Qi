@@ -50,70 +50,67 @@ $i = "";
 <body class="col-lg-4 mx-auto" style="border-bottom: #c61c18 solid 4px; font-family: Oswald; margin-bottom: 30px;">
 <?php include_once ("includes/nav.inc.php")?>
 <div style="padding-top: 100px;">
-            <img src="<?php echo $image['filelocation']; ?>" alt="">
-            <?php
+    <img src="<?php echo $image['filelocation']; ?>" alt="">
+    <?php
 
-            if($colors->checkPostidColor($_SESSION['imageID'])){
+    if($colors->checkPostidColor($_SESSION['imageID'])){
 
-                $colors->SaveColors($image['filelocation'],$_SESSION['imageID']);
+        $colors->SaveColors($image['filelocation'],$_SESSION['imageID']);
 
-            }
-            else{
+    }
+    else{
 
-            }
-            $c=$colors->showColors($_SESSION['imageID']);
+    }
+    $c=$colors->showColors($_SESSION['imageID']);
 
 
 
-            ?>
+    ?>
 
 </div>
-                <a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><img style="height: 40px;width:40px;border-radius: 40px; margin-top:10px; display: inline-block;" src="<?php echo $avatar['avatar']; ?>" alt=""></a>
-                <a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><p class="name<?php echo $i ?> namePostDetail"><?php echo $email['email']; ?></p></a>
+<a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><img style="height: 40px;width:40px;border-radius: 40px; margin-top:10px; display: inline-block;" src="<?php echo $avatar['avatar']; ?>" alt=""></a>
+<a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><p class="name<?php echo $i ?> namePostDetail"><?php echo $email['email']; ?></p></a>
+<span class="comment-text"><?php echo $description['besch']; ?></span>
+<p class="timestamp"><?php echo $postTime ?></p>
 <?php foreach ($c as $col){
     echo "<div style='float: right; width: 20px;height: 20px; background-color:". $col['color']."'></div>";
 
 }?>
 <hr>
 
-                <p class="likes"><?php
+        <p class="likes"><?php
 
-                    if($likeCount == 0) {
-                        echo "No likes yet";
-                    }
-                    elseif($likeCount == 1)
-                    {
-                        echo $likeCount." Like";
-                    }
-                    else
-                    {
-                        echo $likeCount." Likes";
-                    }
-                    ?>
-                </p>
-                <p class="timestamp"><?php echo $postTime ?></p>
+            if($likeCount == 0) {
+                echo "No likes yet";
+            }
+            elseif($likeCount == 1)
+            {
+                echo $likeCount." Like";
+            }
+            else
+            {
+                echo $likeCount." Likes";
+            }
+            ?>
+        </p>
 
-            </div>
-            <div class="commentFeed">
-                <ul class="commentsList">
-                    <li><a href="profile.php?userID=<?php echo $comment['commentuserid']; ?>">
-                            <?php echo $email['email']; ?>
-                        </a>
-                        <span class="comment-text"><?php echo $description['besch']; ?></span>
-                    </li>
-                    <?php foreach( $comments as $comment): ?>
-                        <li>
-                            <a href="profile.php?userID=<?php echo $comment['commentuserid']; ?>">
-                                <?php
-                                $user = new User();
-                                $email=$user->getProfile($comment['commentuserid']);;
-                                echo $email['email'];
-                                ?></a>
-                            <span class="comment-text"><?php echo htmlspecialchars($comment['comment']); ?></span>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+
+<div class="commentFeed">
+    <ul class="commentsList">
+        <?php foreach( $comments as $comment): ?>
+            <li>
+                <a href="profile.php?userID=<?php echo $comment['commentuserid']; ?>">
+                    <?php
+                    $user = new User();
+                    $email=$user->getProfile($comment['commentuserid']);;
+                    echo $email['email'];
+                    ?></a>
+                <span class="comment-text"><?php echo htmlspecialchars($comment['comment']); ?></span>
+            </li>
+
+        <?php endforeach; ?>
+    </ul>
+</div>
 
 </body>
 <script
