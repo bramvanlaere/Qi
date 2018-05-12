@@ -1,0 +1,67 @@
+#slctFilter{
+    width:120px;
+    margin-left: 20px;
+
+
+
+}
+
+#slctFilter:hover{
+    background-color:#c61c18 ;
+    color: white;
+}
+
+
+
+#tit{
+    margin-top: 90px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+}
+
+.form{
+    margin-left: 20px;
+    float: left;
+
+}
+
+#fileUpload{
+    margin-bottom: 20px;
+
+}
+
+#beschrijving{
+    margin-bottom: 20px;
+}
+
+#knop{
+    margin-bottom:20px;
+    border-radius: 15px;
+    color: whitesmoke;
+    background-color: #c61c18;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+#knop:hover{
+    background-color:#9b2323;
+
+}
+
+#output{
+    width: 400px;
+    float: right;
+    margin-right: 20%;
+    margin-left: 20px;
+}
+
+@media screen and(max-width: 500px) {
+    #output{
+        width: 200px;
+    }
+}

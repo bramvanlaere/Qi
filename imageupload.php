@@ -43,6 +43,7 @@ else{
     <style type="text/css" media="all">
         @import "css/cssgram.min.css";
     </style>
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -130,7 +131,7 @@ else{
 
 <?php include_once("includes/nav.inc.php"); ?>
 
-<div style="margin-top: 60px";><h4>Upload an image</h4></div>
+<div id="tit" ><h4>Upload an image</h4></div>
 <div class="form">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" onchange="loadFile(event)" id="fileUpload" />
@@ -138,7 +139,7 @@ else{
         <textarea id="beschrijving" rows="5" cols="40" name="besch" id="comment"></textarea>
         <br />
         <input type="hidden" name="location" id="location" value="">
-        <input type="submit" name="submit" value="upload!" />
+        <input id="knop" type="submit" name="submit" value="upload!" />
 
         <?php
         if( isset($error) ) {
@@ -146,8 +147,9 @@ else{
         }
         ?>
 
-        <div class="custom-select" style="width:200px;">
+
             <select id="slctFilter" name="slctFilter" onchange="filterGo(this.id)">
+                <div id="content">
                 <option value="0">Select Filter:</option>
                 <option value="_1997">1977</option>
                 <option value="aden">Aden</option>
@@ -175,14 +177,16 @@ else{
                 <option value="walden">Walden</option>
                 <option value="willow">Willow</option>
                 <option value="xpro2">Xpro2</option>
+                </div>
             </select>
-        </div>
+
 
     </form>
+</div>
+
+    <img class="" id="output" />
 
 
-
-    <img class="" id="output" style="width:400px;"/>
 
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
