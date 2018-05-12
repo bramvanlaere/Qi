@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = new PDO('mysql:host=localhost; dbname=qi', 'root', '');
+$conn = new PDO('mysql:host=localhost; dbname=qi', 'root', 'root');
 
 if(!empty($_SESSION['userid'])){
     $userid = $_SESSION['userid'];

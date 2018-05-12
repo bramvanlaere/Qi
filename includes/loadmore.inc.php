@@ -4,7 +4,7 @@
 
     $array= $_SESSION['friendarray'];
 
-    $conn = new PDO('mysql:host=localhost; dbname=qi', 'root', '');
+    $conn = new PDO('mysql:host=localhost; dbname=qi', 'root', 'root');
 
 
     $statement = $conn->prepare("SELECT * FROM `posts` WHERE imageuserid = :array order by TIMESTAMP DESC LIMIT :getal OFFSET :offset");

@@ -16,7 +16,7 @@ if(isset($_SESSION['loggedin'])){
         $p->setBesch($besch);
         $p->setLocation($_POST['location']);
         $p->savePost();
-        $p ->setClassName($className);
+
     }
 
 

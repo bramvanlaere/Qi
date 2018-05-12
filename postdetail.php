@@ -4,6 +4,7 @@ include_once ("classes/postDetails.class.php");
 include_once ("classes/user.class.php");
 include_once ("classes/Post.class.php");
 
+
 require 'vendor/autoload.php';
 
 use League\ColorExtractor\Color;
@@ -44,13 +45,14 @@ $i = "";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/cssgram.min.css" type="text/css">
     <title>Document</title>
 </head>
 
 <body class="col-lg-4 mx-auto" style="border-bottom: #c61c18 solid 4px; font-family: Oswald; margin-bottom: 30px;">
 <?php include_once ("includes/nav.inc.php")?>
-<div style="padding-top: 100px;">
-    <img src="<?php echo $image['filelocation']; ?>" alt="">
+<div   style="padding-top: 100px;">
+    <img class="<?php echo $post['filter'];?>" src="<?php echo $image['filelocation'];?>" >
     <?php
 
     if($colors->checkPostidColor($_SESSION['imageID'])){

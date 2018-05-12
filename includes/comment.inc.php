@@ -1,5 +1,5 @@
 <?php
-$conn = new PDO('mysql:host=localhost; dbname=qi', 'root', '');
+$conn = new PDO('mysql:host=localhost; dbname=qi', 'root', 'root');
 //userID
 
 $email=$_POST['userName'];

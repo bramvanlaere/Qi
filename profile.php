@@ -58,6 +58,7 @@ if($_SESSION['userid']===$_SESSION['targetUserID']){
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/cssgram.min.css">
     <title>Profile</title>
 </head>
 <body>
@@ -93,7 +94,7 @@ if($_SESSION['userid']===$_SESSION['targetUserID']){
             <a href="postDetail.php?imageID=<?php echo $post['id']; ?>">
                 <div class="feedBox">
 
-                        <img src="<?php echo $post['filelocation']; ?>" alt="">
+                        <img class="<?php echo $post['filter'];?>" src="<?php echo $post['filelocation']; ?>" alt="">
 
                     <div class="overlay">
                         <div class="likes">
