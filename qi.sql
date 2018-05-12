@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Gegenereerd op: 11 mei 2018 om 12:25
--- Serverversie: 10.1.21-MariaDB
--- PHP-versie: 5.6.30
+-- Host: 127.0.0.1
+-- Gegenereerd op: 12 mei 2018 om 13:08
+-- Serverversie: 10.1.32-MariaDB
+-- PHP-versie: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -167,7 +169,9 @@ INSERT INTO `friendlist` (`Id`, `userid`, `friendid`) VALUES
 (13, 48, 49),
 (45, 5, 53),
 (46, 54, 48),
-(47, 48, 5);
+(47, 48, 5),
+(48, 55, 48),
+(49, 55, 48);
 
 -- --------------------------------------------------------
 
@@ -257,7 +261,10 @@ INSERT INTO `posts` (`id`, `filelocation`, `imageuserid`, `besch`, `user`, `time
 (93, 'files/48-1525855025.jpg', 48, 'lel', 'test1234@bram.com', '2018-05-09 08:37:06', 'moon', ''),
 (94, 'files/48-1525856592.jpg', 48, 'test moon', 'test1234@bram.com', '2018-05-09 09:03:13', 'moon', ''),
 (95, 'files/48-1526026808.jpg', 48, 'do you know where I am at ?', 'test1234@bram.com', '2018-05-11 08:20:10', 'moon', ''),
-(96, 'files/48-1526028488.jpg', 48, 'do you know where I am at ?', 'test1234@bram.com', '2018-05-11 08:48:10', 'lofi', 'Tienen Atheneum, 3300 Tienen, BelgiÃ«');
+(96, 'files/48-1526028488.jpg', 48, 'do you know where I am at ?', 'test1234@bram.com', '2018-05-11 08:48:10', 'lofi', 'Tienen Atheneum, 3300 Tienen, BelgiÃ«'),
+(99, 'files/55-1526122341.jpg', 55, 'landscape1', '1@test.com', '2018-05-12 10:52:21', '0', ''),
+(100, 'files/55-1526122360.jpg', 55, 'landscape2', '1@test.com', '2018-05-12 10:52:40', '0', ''),
+(101, 'files/55-1526123190.jpg', 55, 'landscape3', '1@test.com', '2018-05-12 11:06:31', '0', 'Kassei, 1800 Vilvoorde, BelgiÃ«');
 
 -- --------------------------------------------------------
 
@@ -288,7 +295,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `bio`, `firstname`, `l
 (50, 'test@1234.com', '$2y$10$1nYlYxao3zxitvJfuipuJO4ag1q4PfSgk5tJ16gcFUchUDJDpr1MW', '', '', 'test1234', 'test1234'),
 (51, 'test2@kw.com', '$2y$10$A5lU4eSqsFEYRWJm4Pp1tuRN1Eg9WFerOU9L0BkzXCwgBGQFx4LV.', 'avatars/51_avatar.jpg', '', 'test1234', 'test1234'),
 (53, 'thomaslaeremans@hotmail.com', '$2y$10$MIpYJfDRZFjETNx1VPHflOS81bVFBGSUmLI0iPqcnbN3ld3mTDK12', '', '', 'Thomas', 'Laeremans'),
-(54, 'lel@whut.com', '$2y$10$LjvlfZbKFaJLU.Pu7lOKZuWH4Yp9tBhwLz.GMa2C2M4RwnVEnGp3O', 'avatars/54_avatar.jpg', 'this makes no sense', 'bram', 'van laere');
+(54, 'lel@whut.com', '$2y$10$LjvlfZbKFaJLU.Pu7lOKZuWH4Yp9tBhwLz.GMa2C2M4RwnVEnGp3O', 'avatars/54_avatar.jpg', 'this makes no sense', 'bram', 'van laere'),
+(55, '1@test.com', '$2y$10$405b.hD6iGGRVZkVlis2uuGdQ2scqb9zwBmMBpR06ODv.ehoqF4oq', '', '', 'Senne', 'Felis');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -339,31 +347,38 @@ ALTER TABLE `users`
 --
 ALTER TABLE `comments`
   MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT voor een tabel `friendlist`
 --
 ALTER TABLE `friendlist`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
 --
 -- AUTO_INCREMENT voor een tabel `inappropriate`
 --
 ALTER TABLE `inappropriate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
 --
 -- AUTO_INCREMENT voor een tabel `likes`
 --
 ALTER TABLE `likes`
   MODIFY `likeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
