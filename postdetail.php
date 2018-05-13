@@ -4,7 +4,6 @@ include_once ("classes/postDetails.class.php");
 include_once ("classes/user.class.php");
 include_once ("classes/Post.class.php");
 
-
 require 'vendor/autoload.php';
 
 use League\ColorExtractor\Color;
@@ -23,7 +22,9 @@ if(isset($_GET['imageID'])){
     $userID = $post->getUserID($_GET['imageID']);
     $description = $post->getDescription($_GET['imageID']);
     $comments = $post->getComments($_GET['imageID']);
+    $filter=$post->getFilter($_GET['imageID']);
     $colors= new Post();
+
 
     $likeCheck = $post->likeCheck($_GET['imageID']);
     if($likeCheck)
@@ -37,22 +38,54 @@ if(isset($_GET['imageID'])){
         $class = "btnLike";
     }
 }
+$post = new postDetails();
+$post = postDetails::getUserID($_GET['imageID']);
+$userid = $post['imageuserid'];
+$postid = $_GET['imageID'];
 
+if (isset($_POST['delete'])){
+    $pd = new postDetails();
+    $post = postDetails::getUserID($_GET['imageID']);
+    $userid = $post['imageuserid'];
+    $postid = $_GET['imageID'];
+    $pd->delPost($postid);
+    if (postDetails::delPost($postid) == true){
+        header('Location:profile.php?userID='.$userid);
+    } else{
+        echo "something went wrong";
+    }
+}
+
+if (isset($_POST['edit'])){
+    $pd = new postDetails();
+    $post = postDetails::getUserID($_GET['imageID']);
+    $userid = $post['imageuserid'];
+    $postid = $_GET['imageID'];
+    $bio = $_POST['bio'];
+    $pd->setBio($bio);
+    $pd->updatePost($postid);
+    if (postDetails::updatePost($postid) == true){
+        header('Location:profile.php?userID='.$userid);
+    } else{
+        echo "something went wrong";
+    }
+
+}
 
 $i = "";
 
 ?><!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <link rel="stylesheet" href="css/cssgram.min.css" type="text/css">
+    <meta charset="UTF-8">
     <title>Document</title>
 </head>
 
 <body class="col-lg-4 mx-auto" style="border-bottom: #c61c18 solid 4px; font-family: Oswald; margin-bottom: 30px;">
 <?php include_once ("includes/nav.inc.php")?>
-<div   style="padding-top: 100px;">
-    <img class="<?php echo $post['filter'];?>" src="<?php echo $image['filelocation'];?>" >
+<div style="padding-top: 100px;">
+    <img style="width: auto; max-width: 100%;height: auto;" class="<?php echo $filter["filter"] ?>" src="<?php echo $image['filelocation']; ?>" alt="">
     <?php
 
     if($colors->checkPostidColor($_SESSION['imageID'])){
@@ -113,6 +146,18 @@ $i = "";
         <?php endforeach; ?>
     </ul>
 </div>
+<?php if ($userid === $_SESSION['userid']): ?>
+    <form action="" method="post">
+        <input type="submit" id="delete" name="delete" value="Delete">
+        <button id="edit" name="edit" onclick="showDiv()">Edit</button>
+        <div class="edit" id="edit">
+            <textarea  rows="5" cols="40" name="bio" id="bio"></textarea>
+            <br />
+
+            <input type="submit" name="edit" value="Save" />
+        </div>
+    </form>
+<?php endif; ?>
 
 </body>
 <script

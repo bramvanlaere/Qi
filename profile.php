@@ -94,22 +94,12 @@ if($_SESSION['userid']===$_SESSION['targetUserID']){
             <a href="postDetail.php?imageID=<?php echo $post['id']; ?>">
                 <div class="feedBox">
 
-                        <img class="<?php echo $post['filter'];?>" src="<?php echo $post['filelocation']; ?>" alt="">
+                        <img class="<?php echo $post['filter']?>" src="<?php echo $post['filelocation']; ?>" alt="">
 
                     <div class="overlay">
                         <div class="likes">
-                            <img class="overlay-icon"src="images/heart_blank.png" alt="">
-                            <p>
-                                <?php
-                                $likes = new postDetails();
-                                $likecount = $likes->getLikes($post['id']);
-                                echo $likecount;
-                                ?>
-                            </p>
                         </div>
                     </div>
-                    <a href="postupdate.php?imageID=<?php echo $post['id']; ?>">bewerken</a>
-                    <a onclick="return confirm('Ben je zeker dat je deze post wil verwijderen')" href="deletePost.php?imageID=<?php echo $post['id']; ?>">verwijderen</a>
                 </div>
             </a>
         <?php endforeach; ?>

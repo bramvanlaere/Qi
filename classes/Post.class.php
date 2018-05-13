@@ -290,41 +290,7 @@ class Post
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
          }
-    public function updatePost($postid)
-    {
-        $conn = Db::getInstance();
 
-        $stmt = $conn->prepare("UPDATE posts SET besch=:besch, filelocation=:filelocation WHERE id = :postid");
-        $stmt->bindValue(':postid', $postid);
-        $stmt->bindParam(':besch', $this->getBesch());
-        $stmt->bindValue(':filelocation', $this->getFilePath());
-        return $stmt->execute();
-    }
-
-    public function getUserPost($postid)
-    {
-        $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT * from posts WHERE id = :postid");
-        $statement->bindValue(':postid', $postid);
-        $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
-
-
-        if ($res) {
-            //$this->setFilePath($res['filelocation']);
-            return $res;
-        } else {
-            throw new Exception("oeps er liep iets mis");
-        }
-    }
-
-    public function deletePost()
-    {
-        $conn = Db::getInstance();
-        $statement = $conn->prepare("DELETE FROM posts WHERE id = :postid");
-        $statement->bindValue('postid', $this->getPostId());
-        $statement->execute();
-    }
 
 
 

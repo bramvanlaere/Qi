@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = new PDO('mysql:host=localhost; dbname=qi', 'root', 'root');
+$conn = new PDO('mysql:host=localhost; dbname=qi', 'root', '');
 if(!empty($_SESSION['targetUserID'])){
     $userID = $_SESSION['userid'];
     $friendid = $_SESSION['targetUserID'];

@@ -118,24 +118,77 @@ $(document).ready(function(){
             data: {},
             success: function (data) {
                 var parsed = JSON.parse(data);
-
                 if (parsed !== "No data") {
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'includes/avatarcall.php',
+                        data: {postid:parsed.id},
+                        success:function (data) {
+                            var rest = JSON.parse(data);
+                            var comments = rest.comment;
+
+                            if(rest.likecount == 0) {
+                                var like="No likes this yet";
+                            }
+                            else{
+                                if(rest.likecount == 1){
+                                    var like=" like";
+
+                                }else{
+                                    var like=" likes"
+                                }
+
+
+
+
+                            }
+
+
+
+
+
+
                     $('.indexFeed').append("<div class='post__user' >" +
-                        "<h4><a class='' href='profile.php?userID="+parsed.imageuserid+">'>" +
-                        ""+parsed.user+"</a></h4><img src=+parsed.avatar+>" +
-                        "</div><div class=''> <img class='' src="+parsed.filelocation+">" +
-                        "</div>" +
-                        "<div style='padding: auto;'><div class='feedFooterBottom'> " +
-                        "<?php$like = new postDetails();$likeCheck = $like->likeCheck($post['id']);if($likeCheck)" +
-                        "{$source = 'images/heart_filled.png';$class = 'btnUnlike';}else{$source = 'images/heart_blank.png';$class = 'btnLike';} ?>" +
-                        " </div> </div> " +
-                        "<img class='likeHeart <?php echo $class; ?> 'src='<?php echo $source; ?>' alt='like'value='<?php echo $post['id'] ?>'>" +
-                        " <div class='card-text'> <p><?php echo $post['besch']?></p> </div> <p style='color: grey;font-size: small;'> " +
-                        "<?php$timestamp = new postDetails();$timestamp = $timestamp->getPostHour($post['id']);echo $timestamp; ?> </p> " +
-                        "<div style='margin-bottom: 10%;' class='comments'> <form method='post'> <label for='comment'></label>" +
-                        " <input type='text' name='comments'> <button class='btn btn-dark' name='submit'>Comment</button> <hr> </form> </div>")
+                        "<form action='' method='post'>" +
+                            "<button  style='border-radius: 15px; color: whitesmoke; background-color: #c61c18; float: right; border: none;' class='btn-btn-primary-report' name='report' id='report' value='report'>report</button>" +
+                        " <span></span> " +
+                        "<input type='hidden' name='postid' id='postid' value=''> " +
+                                "</form> " +
+                        "<h4><img style='height: 75px; width: 75px; border-radius: 100px;' src="+rest.avatar["avatar"]+"><a href=''>"+parsed.user+"</a></h4></div>" +
+                        "<div><img style='margin-left: -19px;' class='' src="+parsed.filelocation+" alt='post'> </div> " +
+                        "<span>"+parsed.besch+"</span>" +
+                        "<p>"+rest.likecount+like+"</p>"+
+                        "<div style='padding: auto;'> <ul class='commentsList"+parsed.id+"'>" +
+
+                        " <input type='hidden' class='imageID"+parsed.id+"' value="+parsed.id+">" +
+                        "<input type='hidden' class='userID' value='"+parsed.imageuserid+"'> " +
+                        "<input type='hidden' class='username' value="+parsed.email+"> " +
+
+                        "</ul> <div class='feedFooterBottom'> " +
+                        " <form> " +
+                        "<img class='likeHeart btnLike 'src='images/heart_blank.png' alt='like'value='<?php echo $post['id'] ?>'>" +
+                        " <input class='commentField"+parsed.id+"' type='text' name='commentField' placeholder='Add a comment...'> " +
+                        "<input class='comment-btn-submit' type='submit' value="+parsed.id+" style='position: absolute; left: -9999px'/> " +
+                        "</form> <p style='color: grey;font-size: small;'>"+rest.postTime+"" +
+                        " </p>  <hr>")
+                        }
+
+                    });
+
+
+                }else{
                     alert("There are no more images to load!");
                 }
+                var i;
+                for (i = 0; i < comments.length; ++i) {
+                    var commentdeel="<li><a href='profile.php?userID="+comments[i]["commentuserid"]+"'>"+comments[i]["email"]+"</a> " + "<span class='comment-text'>"+comments[i]["comment"]+"</span> </li>"
+                    var postid=comments[i][3];
+                    console.log(postid);
+                    $(".commentsList"+postid+"").append(commentdeel);
+                }
+
             }
         });
     });

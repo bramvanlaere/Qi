@@ -16,7 +16,7 @@ if(isset($_SESSION['loggedin'])){
         $p->setBesch($besch);
         $p->setLocation($_POST['location']);
         $p->savePost();
-
+        $p ->setClassName($className);
     }
 
 
@@ -42,8 +42,6 @@ else{
     <title>New upload</title>
     <style type="text/css" media="all">
         @import "css/cssgram.min.css";
-
-        }
     </style>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -132,8 +130,8 @@ else{
 <body>
 
 <?php include_once("includes/nav.inc.php"); ?>
-
-<div id="tit" ><h4>Upload an image</h4></div>
+<div class="col-lg-4 mx-auto">
+<div id="tit"><h4>Upload an image</h4></div>
 <div class="form">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" onchange="loadFile(event)" id="fileUpload" />
@@ -149,7 +147,7 @@ else{
         }
         ?>
 
-
+        <div class="custom-select" style="width:200px;">
             <select id="slctFilter" name="slctFilter" onchange="filterGo(this.id)">
                 <div id="content">
                 <option value="0">Select Filter:</option>
@@ -181,19 +179,14 @@ else{
                 <option value="xpro2">Xpro2</option>
                 </div>
             </select>
-
+        </div>
 
     </form>
-</div>
-
-    <img class="" id="output"  />
+</</div>
 
 
+    <img class="" id="output" />
 
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function(){
@@ -204,7 +197,6 @@ else{
                     var lat = position.coords.latitude;
 
                     console.log(lng);
-                    console.log(lat);
 
                     $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=true", function(data){
                         console.log(data["results"][1]["formatted_address"]);

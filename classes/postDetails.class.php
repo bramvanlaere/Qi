@@ -5,6 +5,24 @@ include_once ('Db.class.php');
 class postDetails{
 
     private $Postid;
+    private $bio;
+
+    /**
+     * @return mixed
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * @param mixed $bio
+     */
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+    }
+
 
     /**
      * @return mixed
@@ -156,6 +174,38 @@ class postDetails{
 
         return $description;
     }
+    public function getFilter ($postid){
+        $conn = Db::getInstance();
+        $getfilter = $conn->prepare("SELECT filter FROM posts WHERE id = :id");
+        $getfilter->bindValue(':id', $postid );
+        $getfilter->execute();
+        $filter = $getfilter->fetch(PDO::FETCH_ASSOC);
+
+        return $filter;
+    }
+    public function delPost($postid){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("Delete from posts WHERE imageuserid = :id AND id = :postid");
+        $statement->bindValue(":id",$_SESSION['userid']);
+        $statement->bindValue(":postid",$postid);
+        $res = $statement->execute();
+        return $res;
+
+
+    }
+
+    public function updatePost($postid){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("update posts set besch = :besch WHERE id = :postid");
+        $statement->bindValue(":postid",$postid);
+        $statement->bindValue(":besch",$this->getBio());
+        $res = $statement->execute();
+        return $res;
+    }
+
+
+
+
 
 
 

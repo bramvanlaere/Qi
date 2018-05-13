@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = new PDO('mysql:host=localhost; dbname=qi', 'root', 'root');
+$conn = new PDO('mysql:host=localhost; dbname=qi', 'root', '');
 
 // likeImageID
 $likeImageID = $_POST['nieuweLike'];

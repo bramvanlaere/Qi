@@ -73,17 +73,17 @@
 
             ?>
             <?php if (Post::countInappropriate($post['id']) === false):?>
-            <div class="post__user" >
+            <div class="post__user">
                 <form action="" method="post">
                     <button  style="border-radius: 15px; color: whitesmoke; background-color: #c61c18; float: right; border: none;" class="btn-btn-primary-<?php echo $class; ?>" name="report" id="report" value="<?php echo $post['id'] ?>"><?php echo $class; ?></button>
                     <span><?php echo Post::countInappropriate($post['id']); ?></span>
                     <input type="hidden" name="postid" id="postid" value="<?php echo $post['id']?>">
                 </form>
-                <h4 class=""><img style="height: 40px;width:40px;border-radius: 40px; margin-right:30px; margin-top: 10px;" src="<?php echo $b['avatar'];?>"><a class="" href="profile.php?userID=<?php echo $post['imageuserid'];?>"><?php echo $post['user']?></a></h4>
+                <h4 class=""><img style="height: 75px; width: 75px; border-radius: 100px;" src="<?php echo $b['avatar'];?>"><a class="" href="profile.php?userID=<?php echo $post['imageuserid'];?>"><?php echo $post['user']?></a></h4>
 
              </div>
             <div class="">
-                <img style="margin-left: -19px;" class="<?php echo $post['filter'];?>" src="<?php echo $post['filelocation']?>" alt="">
+                <img style="width: auto; max-width: 100%;height: auto;" class="<?php echo $post['filter'];?>" src="<?php echo $post['filelocation']?>" alt="">
              </div>
                 <span><?php echo $post['besch']?></span>
             <p>
@@ -151,8 +151,7 @@
                 </div>
             </div>
             <form>
-                <img class="likeHeart <?php echo $class; ?> "src="<?php echo $source; ?>" alt="like"
-                     value="<?php echo $post['id'] ?>">
+                <img class="likeHeart <?php echo $class; ?> "src="<?php echo $source; ?>" alt="like" value="<?php echo $post['id'] ?>">
             <input class="commentField<?php echo $post['id']; ?>" type="text" name="commentField" placeholder="Add a comment...">
             <input class="comment-btn-submit" type="submit" value="<?php echo $post['id']; ?>"
                    style="position: absolute; left: -9999px"/>
