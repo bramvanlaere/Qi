@@ -464,6 +464,18 @@ class User{
         }
     }
 
+    public function userExists($email){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select * from users where email = :email");
+        $statement->bindValue(":email",$email);
+        $statement->execute();
+        if ($statement->rowCount()>=1){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
 
 
 

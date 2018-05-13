@@ -3,8 +3,9 @@
 include_once("classes/User.class.php");
 
 if( !empty($_POST) ) {
-
-
+$email = $_POST['email'];
+$feedback = "";
+if (User::userExists($email) == true) {
     if ($_POST['password'] == $_POST['password_confirmation']) {
 
 
@@ -19,6 +20,8 @@ if( !empty($_POST) ) {
             $feedback = "Something went wrong.";
         }
     }
+}
+
 }
 
 ?><!DOCTYPE html>
