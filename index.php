@@ -110,9 +110,9 @@
                     $email = $singlePost->GetEmail($post['id']);
                     $comments = $singlePost->getComments($post['id']);
                     ?>
-                    <input type="hidden" class="imageID<?php echo $i; ?>" value="<?php echo $post['id']; ?>">
+                    <input type="hidden" class="imageID<?php echo $post['id']; ?>" value="<?php echo $post['id']; ?>">
                     <input type="hidden" class="userID" value="<?php echo $_SESSION['userid']; ?>">
-                    <input type="hidden" class="username" value="<?php echo $_SESSION['user']; ?>">
+                    <input type="hidden" class="email" value="<?php echo $_SESSION['user']; ?>">
 
 
 

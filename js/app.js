@@ -44,7 +44,7 @@ $(document).ready(function(){
         var postID = $(this).val();
         var comment = $(".commentField"+postID).val();
         var userID = $(".userID").val();
-        var userName = $(".username").val();
+        var userName = $(".email").val();
         console.log(userName+postID+comment+userID);
 
         if (comment.length > 0 && userID != null){
@@ -150,18 +150,28 @@ $(document).ready(function(){
                             }
 
 
+                            var i;
+                            for (i = 0; i < comments.length; ++i) {
+                                var commentdeel="<li><a href='profile.php?userID="+comments[i]["commentuserid"]+"'>"+comments[i]["email"]+"</a> " + "<span class='comment-text'>"+comments[i]["comment"]+"</span> </li>"
+                                var postid=comments[i][3];
+                                console.log(postid);
+                                $(".commentsList"+postid+"").append(commentdeel);
+                            }
 
 
 
 
-                    $('.indexFeed').append("<div class='post__user' >" +
+
+
+
+                            $('.indexFeed').append("<div class='post__user' >" +
                         "<form action='' method='post'>" +
                             "<button  style='border-radius: 15px; color: whitesmoke; background-color: #c61c18; float: right; border: none;' class='btn-btn-primary-report' name='report' id='report' value='report'>report</button>" +
                         " <span></span> " +
                         "<input type='hidden' name='postid' id='postid' value=''> " +
                                 "</form> " +
                         "<h4><img style='height: 75px; width: 75px; border-radius: 100px;' src="+rest.avatar["avatar"]+"><a href=''>"+parsed.user+"</a></h4></div>" +
-                        "<div><img style='margin-left: -19px;' class='' src="+parsed.filelocation+" alt='post'> </div> " +
+                        "<div><img style='width: auto; max-width: 100%;height: auto;' src="+parsed.filelocation+" alt='post'> </div> " +
                         "<span>"+parsed.besch+"</span>" +
                         "<p>"+rest.likecount+like+"</p>"+
                         "<div style='padding: auto;'> <ul class='commentsList"+parsed.id+"'>" +
@@ -184,13 +194,6 @@ $(document).ready(function(){
 
                 }else{
                     alert("There are no more images to load!");
-                }
-                var i;
-                for (i = 0; i < comments.length; ++i) {
-                    var commentdeel="<li><a href='profile.php?userID="+comments[i]["commentuserid"]+"'>"+comments[i]["email"]+"</a> " + "<span class='comment-text'>"+comments[i]["comment"]+"</span> </li>"
-                    var postid=comments[i][3];
-                    console.log(postid);
-                    $(".commentsList"+postid+"").append(commentdeel);
                 }
 
             }

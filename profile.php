@@ -26,6 +26,7 @@ if(!empty($_GET)) {
 
 if($_SESSION['userid']===$_SESSION['targetUserID']){
         $show="show";
+        $unshow="";
         $btnClass="";
         $btnText="";
         $feed = new User();
@@ -33,6 +34,7 @@ if($_SESSION['userid']===$_SESSION['targetUserID']){
 
 }else   {
         $show="";
+        $unshow="unshow";
         if ($profile->followCheck()) {
             $btnClass = "btnUnfollow";
             $btnText = "FOLLOWING";
@@ -72,6 +74,7 @@ if($_SESSION['userid']===$_SESSION['targetUserID']){
             <p class="userName"><?php echo $username; ?></p>
 
             <button id="<?php echo $show?>" class="<?php echo $btnClass; ?>"><?php echo $btnText; ?></button>
+            <a style="border: 1px solid grey; font-family: Oswald; font-size: small; color: grey;margin-left: 20px; padding: 5px; border-radius:20px; text-decoration: none;" id="<?php echo $unshow?>" href="Accountsettings.php">Edit</a>
         </div>
 
         <p class="userDescription"><?php echo $bioText; ?></p>

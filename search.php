@@ -8,7 +8,7 @@ if(isset($_GET['txtSearch'])) {
     $conn = Db::getInstance();
     $searchKeyword = $_GET['txtSearch'];
     $results = array();
-    $statement = $conn->prepare("SELECT * FROM posts WHERE besch OR location LIKE :keywords OR user LIKE :keywords ORDER BY id DESC");
+    $statement = $conn->prepare("SELECT * FROM posts WHERE besch LIKE :keywords OR user LIKE :keywords OR location LIKE :keywords ORDER BY id DESC");
     $statement->bindValue(':keywords', '%' . $searchKeyword . '%');
     $statement->execute();
 
@@ -43,6 +43,7 @@ if(isset($_GET['txtSearch'])) {
 
     <h2><?php if(isset($countPosts)){echo $_GET['txtSearch'];} ?></h2>
     <h3><?php if(isset($countPosts)){echo "<span>".$countPosts."</span>"." posts";} ?></h3>
+
         <?php foreach($results as $res): ?>
 
     <div class="post__user" >
@@ -53,7 +54,7 @@ if(isset($_GET['txtSearch'])) {
         <img src="<?php echo $res['avatar']?>" alt="">
     </div>
     <div class="">
-        <img class="" src="<?php echo $res['filelocation']?>" alt="">
+        <img style="width: auto; max-width: 100%;height: auto;" src="<?php echo $res['filelocation']?>" alt="">
     </div>
     <p>
         <?php
@@ -73,7 +74,7 @@ if(isset($_GET['txtSearch'])) {
         ?>
     </p>
     <div style="padding: auto;">
-        <ul class="commentsList<?php echo $i; ?>">
+        <ul class="commentsList<?php echo $res['id'] ; ?>">
             <?php
             $singlePost = new postDetails();
             $email = $singlePost->getEmail($res['id']);
@@ -125,8 +126,8 @@ if(isset($_GET['txtSearch'])) {
     <form>
         <img class="likeHeart <?php echo $class; ?> "src="<?php echo $source; ?>" alt="like"
              value="<?php echo $res['id'] ?>">
-        <input class="commentField<?php echo $i; ?>" type="text" name="commentField" placeholder="Add a comment...">
-        <input class="comment-btn-submit" type="submit" value="<?php echo $i; ?>"
+        <input class="commentField<?php echo $res['id'] ?>" type="text" name="commentField" placeholder="Add a comment...">
+        <input class="comment-btn-submit" type="submit" value="<?php echo $res['id'] ?>"
                style="position: absolute; left: -9999px"/>
     </form>
     <p style="color: grey;font-size: small;">
@@ -141,7 +142,11 @@ if(isset($_GET['txtSearch'])) {
     <?php endforeach;?>
 
 
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
 
-
+    <script src="js/app.js"></script>
 </body>
 </html>

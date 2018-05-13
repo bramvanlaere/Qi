@@ -26,12 +26,6 @@
             <a class="nav-link" href="profile.php?userID=<?php echo $_SESSION['userid'];?>">Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="Accountsettings.php">Settings</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="friendlist.php">Friends</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="imageupload.php">Upload</a>
         </li>
         <li class="nav-item">
@@ -40,7 +34,7 @@
         <li class="nav-item">
             <div class="searchBar">
                 <form name="formSearch" method="get" action="search.php">
-                    <span><input id="txtSearch" type="text" name="txtSearch" placeholder="Search" required></span>
+                    <span><input style="border-radius: 10px; border: 1px solid grey; margin-left: 20px; margin-top: 10px; padding-left: 10px;" id="txtSearch" type="text" name="txtSearch" placeholder="Search" required></span>
                 </form>
             </div>
         </li>
