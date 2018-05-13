@@ -202,6 +202,16 @@ class postDetails{
         $res = $statement->execute();
         return $res;
     }
+    public function getLocation($postid){
+        $conn = Db::getInstance();
+        $getloc = $conn->prepare("SELECT location FROM posts WHERE id = :id");
+        $getloc->bindValue(':id', $postid );
+        $getloc->execute();
+        $location = $getloc->fetch(PDO::FETCH_ASSOC);
+
+        return $location;
+
+    }
 
 
 

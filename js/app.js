@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    $(".editbtn").click(function(){
+        $(".form").show();
+    });
+
 
     $('.btnUnfollow').click(function(){
         $.ajax({
@@ -168,11 +172,11 @@ $(document).ready(function(){
 
                         "</ul> <div class='feedFooterBottom'> " +
                         " <form> " +
-                        "<img class='likeHeart btnLike 'src='images/heart_blank.png' alt='like'value='<?php echo $post['id'] ?>'>" +
+                        "<img class='likeHeart btnLike 'src='images/heart_blank.png' alt='like' >" +
                         " <input class='commentField"+parsed.id+"' type='text' name='commentField' placeholder='Add a comment...'> " +
                         "<input class='comment-btn-submit' type='submit' value="+parsed.id+" style='position: absolute; left: -9999px'/> " +
                         "</form> <p style='color: grey;font-size: small;'>"+rest.postTime+"" +
-                        " </p>  <hr>")
+                        " </p> <hr>")
                         }
 
                     });

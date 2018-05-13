@@ -16,7 +16,7 @@ if(isset($_SESSION['loggedin'])){
         $p->setBesch($besch);
         $p->setLocation($_POST['location']);
         $p->savePost();
-        $p ->setClassName($className);
+
     }
 
 
@@ -187,31 +187,31 @@ else{
 
     <img class="" id="output" />
 
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 
-    <script>
-        $(document).ready(function(){
-            if ("geolocation" in navigator) {
-                /* geolocation is available */
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var lng = position.coords.longitude;
-                    var lat = position.coords.latitude;
-
-                    console.log(lng);
-
-                    $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=true", function(data){
-                        console.log(data["results"][1]["formatted_address"]);
-                        $("#location").attr("value", data["results"][1]["formatted_address"]);
-                    });
-
-
+<script>
+    $(document).ready(function(){
+        if ("geolocation" in navigator) {
+            /* geolocation is available */
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var lng = position.coords.longitude;
+                var lat = position.coords.latitude;
+                console.log(lng);
+                console.log(lat);
+                $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=true", function(data){
+                    console.log(data["results"][1]["formatted_address"]);
+                    $("#location").attr("value", data["results"][1]["formatted_address"]);
                 });
-            }
-            else {
-                /* geolocation IS NOT available */
-            }
-        })
-
-    </script>
+            });
+        }
+        else {
+            /* geolocation IS NOT available */
+        }
+    })
+</script>
 
 
 </body>

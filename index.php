@@ -80,7 +80,7 @@
                     <input type="hidden" name="postid" id="postid" value="<?php echo $post['id']?>">
                 </form>
                 <h4 class=""><img style="height: 75px; width: 75px; border-radius: 100px;" src="<?php echo $b['avatar'];?>"><a class="" href="profile.php?userID=<?php echo $post['imageuserid'];?>"><?php echo $post['user']?></a></h4>
-
+                <h6 style="color: grey;font-size: small;"><?php echo $post["location"]?></h6>
              </div>
             <div class="">
                 <img style="width: auto; max-width: 100%;height: auto;" class="<?php echo $post['filter'];?>" src="<?php echo $post['filelocation']?>" alt="">
@@ -161,6 +161,7 @@
                     $timestamp = new postDetails();
                     $timestamp = $timestamp->getPostHour($post['id']);
                     echo $timestamp;
+
                     ?>
                 </p>
 

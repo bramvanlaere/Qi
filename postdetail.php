@@ -23,6 +23,7 @@ if(isset($_GET['imageID'])){
     $description = $post->getDescription($_GET['imageID']);
     $comments = $post->getComments($_GET['imageID']);
     $filter=$post->getFilter($_GET['imageID']);
+    $location=$post->getLocation($_GET['imageID']);
     $colors= new Post();
 
 
@@ -86,6 +87,7 @@ $i = "";
 <?php include_once ("includes/nav.inc.php")?>
 <div style="padding-top: 100px;">
     <img style="width: auto; max-width: 100%;height: auto;" class="<?php echo $filter["filter"] ?>" src="<?php echo $image['filelocation']; ?>" alt="">
+    <hr>
     <?php
 
     if($colors->checkPostidColor($_SESSION['imageID'])){
@@ -103,8 +105,10 @@ $i = "";
     ?>
 
 </div>
-<a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><img style="height: 40px;width:40px;border-radius: 40px; margin-top:10px; display: inline-block;" src="<?php echo $avatar['avatar']; ?>" alt=""></a>
-<a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><p class="name<?php echo $i ?> namePostDetail"><?php echo $email['email']; ?></p></a>
+<div style="margin-top: -25px;">
+<a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><img style="height: 75px; width: 75px; border-radius: 100px;" src="<?php echo $avatar['avatar']; ?>" alt=""></a>
+<a href="profile.php?userID=<?php echo $userID['imageuserid']; ?>"><p class="name<?php echo $i ?> namePostDetail"><?php echo $email['email']; ?></p></a><button style="float: right;" class="editbtn btn btn-warning">edit post</button>
+<p style="color: grey;font-size: small;"><?php echo $location['location']?></p>
 <span class="comment-text"><?php echo $description['besch']; ?></span>
 <p class="timestamp"><?php echo $postTime ?></p>
 <?php foreach ($c as $col){
@@ -147,16 +151,17 @@ $i = "";
     </ul>
 </div>
 <?php if ($userid === $_SESSION['userid']): ?>
-    <form action="" method="post">
+    <form class="form" style="display: none"; action="" method="post">
         <input type="submit" id="delete" name="delete" value="Delete">
         <button id="edit" name="edit" onclick="showDiv()">Edit</button>
         <div class="edit" id="edit">
-            <textarea  rows="5" cols="40" name="bio" id="bio"></textarea>
+            <textarea  rows="2" cols="40" name="bio" id="bio"></textarea>
             <br />
 
             <input type="submit" name="edit" value="Save" />
         </div>
     </form>
+</div>
 <?php endif; ?>
 
 </body>
