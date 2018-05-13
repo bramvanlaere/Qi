@@ -8,7 +8,7 @@ if(isset($_GET['txtSearch'])) {
     $conn = Db::getInstance();
     $searchKeyword = $_GET['txtSearch'];
     $results = array();
-    $statement = $conn->prepare("SELECT * FROM posts WHERE besch LIKE :keywords OR user LIKE :keywords ORDER BY id DESC");
+    $statement = $conn->prepare("SELECT * FROM posts WHERE besch OR location LIKE :keywords OR user LIKE :keywords ORDER BY id DESC");
     $statement->bindValue(':keywords', '%' . $searchKeyword . '%');
     $statement->execute();
 
