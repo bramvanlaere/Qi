@@ -373,8 +373,9 @@ class User{
 
     public function getFeed($userid){
         $friendsid=$this->getFriendId($userid);
-        $_SESSION['getal'] = 5;
-        $_SESSION['offset'] = 3;
+        $_SESSION["friendid"]=$friendsid;
+        $_SESSION['getal'] = 10;
+        $_SESSION['offset'] = 11;
         $conn=Db::getInstance();
         $array=implode(',', $friendsid);
         $_SESSION['friendarray']=$array;

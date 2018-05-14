@@ -122,6 +122,7 @@ $(document).ready(function(){
             data: {},
             success: function (data) {
                 var parsed = JSON.parse(data);
+                console.log(data);
                 if (parsed !== "No data") {
 
 
