@@ -10,6 +10,7 @@
     $f = new User();
     $r=$f->getFeed($userid);
     $a=new postDetails();
+    $s = $f->popularUsers();
 
 
 
@@ -51,6 +52,25 @@
 </head>
 <body>
 <?php include_once("includes/nav.inc.php"); ?>
+<?php if (User::getFollowCount($_SESSION['userid'])<1): ?>
+<div class="suggested" style="margin-top: 5%; width: 37%; margin-left: 33.5% ">
+    <h4>Suggested Friends</h4>
+    <hr>
+
+    <?php foreach($s as $user) :  ?>
+        <div class="users" style="display: block; float: left; margin-left: 10px; width: 130px; text-align: center; height: 180px; font-family: Oswald; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <img src="<?php echo $user['avatar']?>" style="width: 120px; height: 120px; border-radius: 100%" alt="profilepic">
+            <a href="profile.php?userID=<?php echo $user['id']; ?>"><?php echo $user['firstname'],"<br> ",$user['lastname']?></a>
+        </div>
+
+    <?php endforeach; ?>
+
+
+
+
+
+</div>
+<?php endif ?>
 
 <div class="indexFeed col-lg-4 mx-auto" style="margin-top: 80px;font-family: Oswald;">
         <?php foreach($r as $post): $b=$a->getAvatar($post['id']); ?>

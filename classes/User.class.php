@@ -147,15 +147,16 @@ class User{
 
     }
 
-    public function register(){
+    public function register($defaultAvatar){
         $conn = Db::getInstance();
 
         // query (insert)
-        $statement = $conn->prepare("insert into users(email,password,firstname,lastname) values(:email,:password,:firstname,:lastname)");
+        $statement = $conn->prepare("insert into users(email,password,firstname,lastname,avatar) values(:email,:password,:firstname,:lastname,:avatar)");
         $statement->bindParam(':email',$this->email);
         $statement->bindParam(':password',$this->hashPassword());
         $statement->bindParam(':firstname',$this->firstname);
         $statement->bindParam(':lastname',$this->lastname);
+        $statement->bindParam(':avatar',$defaultAvatar);
 
         $result = $statement->execute();
 
@@ -475,7 +476,16 @@ class User{
             return true;
         }
     }
+    public function popularUsers(){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select * from users limit 5");
+        $statement->execute();
+        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $res;
 
+
+
+    }
 
 
 

@@ -5,6 +5,7 @@ include_once("classes/User.class.php");
 if( !empty($_POST) ) {
 $email = $_POST['email'];
 $feedback = "";
+$defaultAvatar = "avatars/default.jpg";
 if (User::userExists($email) == true) {
     if ($_POST['password'] == $_POST['password_confirmation']) {
 
@@ -14,7 +15,7 @@ if (User::userExists($email) == true) {
         $user->setPassword($_POST['password']);
         $user->setFirstname($_POST['firstname']);
         $user->setLastname($_POST['lastname']);
-        if ($user->register()) {
+        if ($user->register($defaultAvatar)) {
             $user->login();
         } else {
             $feedback = "Something went wrong.";
