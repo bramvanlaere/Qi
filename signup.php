@@ -15,12 +15,24 @@ if (User::userExists($email) == true) {
         $user->setPassword($_POST['password']);
         $user->setFirstname($_POST['firstname']);
         $user->setLastname($_POST['lastname']);
+        if (empty($_POST['firstname'])){
+            $feedback = "Please fill in your firstname";
+        }
+        else if (empty($_POST['lastname'])){
+            $feedback = "Please fill in your lastname";
+        }
+        else{
+
         if($user->register($defaultAvatar)){
             $user->login();
         } else {
             $feedback = "Something went wrong.";
         }
     }
+
+    }
+} else{
+    $feedback = "Email already in use";
 }
 
 }
@@ -42,7 +54,7 @@ if (User::userExists($email) == true) {
 <div class="container">
     <h2>Sign up</h2>
     <div class="feedback">
-        <!--<p><?php echo $feedback; ?></p>-->
+        <p><?php echo $feedback; ?></p>
     </div>
     <form action="" method="POST">
         <div class="email">
