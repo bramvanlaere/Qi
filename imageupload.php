@@ -139,7 +139,7 @@ else{
         <textarea id="beschrijving" rows="5" cols="40" name="besch" id="comment"></textarea>
         <br />
         <input type="hidden" name="location" id="location" value="">
-        <input id="knop" type="submit" name="submit" value="upload!" />
+        <button id="knop" class="uploadimg" name="submit">Upload</button>
 
         <?php
         if( isset($error) ) {
@@ -197,10 +197,12 @@ else{
         if ("geolocation" in navigator) {
             /* geolocation is available */
             navigator.geolocation.getCurrentPosition(function(position) {
+
                 var lng = position.coords.longitude;
                 var lat = position.coords.latitude;
                 console.log(lng);
                 console.log(lat);
+
                 $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=true", function(data){
                     console.log(data["results"][1]["formatted_address"]);
                     $("#location").attr("value", data["results"][1]["formatted_address"]);
@@ -212,7 +214,7 @@ else{
         }
     })
 </script>
-
+<script src="js/app.js"></script>
 
 </body>
 </html>

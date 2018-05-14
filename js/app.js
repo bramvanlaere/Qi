@@ -114,6 +114,7 @@ $(document).ready(function(){
 
     });
 
+
     $('.btnLoadMore').click(function() {
 
         $.ajax({
@@ -238,5 +239,11 @@ $(document).ready(function(){
 
         $(this).attr("class", "btn-btn-primary-report");
         $(this).html("report");
-    })
+    });
+
+
+
+
+
+
 });

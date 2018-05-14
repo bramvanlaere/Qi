@@ -1,7 +1,7 @@
 <?php
 
 include_once("classes/User.class.php");
-
+$feedback="";
 if( !empty($_POST) ) {
 $email = $_POST['email'];
 $feedback = "";
@@ -88,7 +88,7 @@ if (User::userExists($email) == true) {
         </div>
 
         <div class="login">
-            <p>Already an account? Login <a href="../Qi-master-9/login.php">Here</a> </p>
+            <p>Already an account? Login <a href="login.php">Here</a> </p>
         </div>
 
     </form>

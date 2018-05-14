@@ -65,11 +65,8 @@ if (isset($_POST['edit'])){
     $bio = $_POST['bio'];
     $pd->setBio($bio);
     $pd->updatePost($postid);
-    if (postDetails::updatePost($postid) == true){
-        header('Location:profile.php?userID='.$userid);
-    } else{
-        echo "something went wrong";
-    }
+    header('Location: index.php');
+
 
 }
 
@@ -153,7 +150,7 @@ $i = "";
 <?php if ($userid === $_SESSION['userid']): ?>
     <form class="form" style="display: none"; action="" method="post">
         <input type="submit" id="delete" name="delete" value="Delete">
-        <button id="edit" name="edit" onclick="showDiv()">Edit</button>
+
         <div class="edit" id="edit">
             <textarea  rows="2" cols="40" name="bio" id="bio"></textarea>
             <br />

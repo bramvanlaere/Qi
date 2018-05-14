@@ -21,6 +21,7 @@ class postDetails{
     public function setBio($bio)
     {
         $this->bio = $bio;
+        return $this;
     }
 
 
@@ -196,9 +197,9 @@ class postDetails{
 
     public function updatePost($postid){
         $conn = Db::getInstance();
-        $statement = $conn->prepare("update posts set besch = :besch WHERE id = :postid");
+        $statement = $conn->prepare("update posts set besch = :bio WHERE id = :postid");
         $statement->bindValue(":postid",$postid);
-        $statement->bindValue(":besch",$this->getBio());
+        $statement->bindValue(":bio",$this->getBio());
         $res = $statement->execute();
         return $res;
     }
