@@ -15,7 +15,7 @@ if (User::userExists($email) == true) {
         $user->setPassword($_POST['password']);
         $user->setFirstname($_POST['firstname']);
         $user->setLastname($_POST['lastname']);
-        if ($user->register($defaultAvatar)) {
+        if($user->register($defaultAvatar)){
             $user->login();
         } else {
             $feedback = "Something went wrong.";
@@ -38,8 +38,6 @@ if (User::userExists($email) == true) {
 </head>
 <body>
 <div class="welcome">
-    <h1>Welcome to QI</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in condimentum nulla. Vestibulum eu scelerisque nibh. Nullam ligula mauris, aliquet.</p>
 </div>
 <div class="container">
     <h2>Sign up</h2>

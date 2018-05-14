@@ -53,26 +53,29 @@
 </head>
 <body>
 <?php include_once("includes/nav.inc.php"); ?>
+
 <?php if (User::getFollowCount($_SESSION['userid'])<1): ?>
-<div class="suggested" id="wrapper">
-    <h4>Suggested Friends</h4>
-    <hr>
-    <div id="outer-wrap">
-        <div id="inner-wrap">
-    <?php foreach($s as $user) :  ?>
-        <div class="users">
-            <img src="<?php echo $user['avatar']?>"  alt="profilepic">
-            <a href="profile.php?userID=<?php echo $user['id']; ?>"><?php echo $user['firstname'],"<br> ",$user['lastname']?></a>
+    <div class="suggested" id="wrapper">
+            <h4>Suggested Friends</h4>
+            <hr>
+        <div class="col-lg-4 mx-auto" id="outer-wrap">
+                    <div id="inner-wrap">
+
+            <?php foreach($s as $user) :  ?>
+                <div class="users">
+                                <img src="<?php echo $user['avatar']?>"  alt="profilepic">
+                           <a href="profile.php?userID=<?php echo $user['id']; ?>"><?php echo $user['firstname'],"<br> ",$user['lastname']?></a>
+                        </div>
+
+               <?php endforeach; ?>
+
+
+            </div>
         </div>
 
-    <?php endforeach; ?>
-    </div>
-    </div>
 
-
-
-</div>
-<?php endif ?>
+        </div>
+    <?php endif ?>
 
 <div class="indexFeed col-lg-4 mx-auto" style="margin-top: 80px;font-family: Oswald;">
         <?php foreach($r as $post): $b=$a->getAvatar($post['id']); ?>
@@ -107,7 +110,8 @@
             <div class="">
                 <img style="width: auto; max-width: 100%;height: auto;" class="<?php echo $post['filter'];?>" src="<?php echo $post['filelocation']?>" alt="">
              </div>
-                <span><?php echo $post['besch']?></span>
+                <span><?php $b=new Post();
+                $b->beschHastag($post['besch']);?></span>
             <p>
                 <?php
                 $likeCounter = new postDetails();
@@ -147,7 +151,7 @@
                                 $email=$user->getProfile($comment['commentuserid']);
                                 echo $email['email'];
                                 ?></a>
-                            <span class="comment-text"><?php echo htmlspecialchars($comment['comment']); ?></span>
+                            <span class="comment-text"><?php  $c=new Post(); $c->beschHastag(htmlspecialchars($comment['comment'])); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>

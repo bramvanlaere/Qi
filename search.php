@@ -3,6 +3,7 @@ include_once('includes/session.inc.php');
 include_once('classes/Db.class.php');
 include_once ('classes/postDetails.class.php');
 include_once ('classes/User.class.php');
+include_once ('classes/Post.class.php');
 
 if(isset($_GET['txtSearch'])) {
     $conn = Db::getInstance();
@@ -95,7 +96,7 @@ if(isset($_GET['txtSearch'])) {
                         $email = $r['email'];
                         echo $email;
                         ?></a>
-                    <span class="comment-text"><?php echo htmlspecialchars($comment['comment']); ?></span>
+                    <span class="comment-text"><?php  $c=new Post(); $c->beschHastag(htmlspecialchars($comment['comment'])); ?></span>
                 </li>
             <?php endforeach; ?>
         </ul>

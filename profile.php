@@ -4,6 +4,7 @@ include_once ("includes/session.inc.php");
 include_once ("classes/User.class.php");
 include_once ("classes/Comment.class.php");
 include_once ("classes/postDetails.class.php");
+include_once ("classes/Post.class.php");
 
 
 if(!empty($_GET)) {
@@ -77,7 +78,7 @@ if($_SESSION['userid']===$_SESSION['targetUserID']){
             <a style="border: 1px solid grey; font-family: Oswald; font-size: small; color: grey;margin-left: 20px; padding: 5px; border-radius:20px; text-decoration: none;" id="<?php echo $unshow?>" href="Accountsettings.php">Edit</a>
         </div>
 
-        <p class="userDescription"><?php echo $bioText; ?></p>
+        <p class="userDescription"><?php $b=new Post(); $b->beschHastag(htmlspecialchars($bioText)); ?></p>
 
         <ul class="userStats">
             <li><span><?php echo $postcount; ?></span> posts</li>

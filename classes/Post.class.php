@@ -293,6 +293,29 @@ class Post
 
 
 
+    public function beschHastag($besch){
+        $htag="#";
+        $arr=explode(" ",$besch);
+        $arrc=count($arr);
+        $i=0;
+
+
+        while ($i<$arrc){
+
+            if(substr($arr[$i], 0, 1) === $htag){
+                $par=$arr[$i];
+                $par=preg_replace("#[^0-9a-z]#i","",$par);
+                $arr[$i]="<a href='search.php?txtSearch=$par'>".$arr[$i]."</a>";
+            }
+            $i++;
+
+        }
+        $besch=implode(" ",$arr);
+        echo $besch;
+
+
+    }
+
 
 
 }
