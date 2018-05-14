@@ -130,13 +130,13 @@ else{
 <body>
 
 <?php include_once("includes/nav.inc.php"); ?>
-<div class="col-lg-4 mx-auto">
+<div style="font-family: Oswald,sans-serif;" class="col-lg-4 mx-auto">
 <div id="tit"><h4>Upload an image</h4></div>
 <div class="form">
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" onchange="loadFile(event)" id="fileUpload" />
         <br>
-        <textarea id="beschrijving" rows="5" cols="40" name="besch" id="comment"></textarea>
+        <textarea id="beschrijving" rows="5" cols="29" name="besch" id="comment"></textarea>
         <br />
         <input type="hidden" name="location" id="location" value="">
         <button id="knop" class="uploadimg" name="submit">Upload</button>

@@ -1,7 +1,7 @@
 
 body {
 
-    font-family: Oswald;
+    font-family: Oswald,sans-serif;
     background-color: #FAFAFA;
     color: #4E606A;
     margin-bottom: 30px;
@@ -18,7 +18,7 @@ body a {
 
 
 .searchBar input {
-    font-family: Oswald;
+    font-family: Oswald,sans-serif;
     border: 1px solid #dddbd9;
     border-radius: 30px;
     background-color: #FAFAFA;
@@ -60,7 +60,7 @@ body a {
 .btnEditProfile {
     background-color: #fbf9f7;
     border:1px solid #4E606A;
-    font-family: 'Oswald';
+    font-family: Oswald,sans-serif;
     color: #ACA9A4;
     padding:4px 4px 4px 4px;
     font-size: 0.6em;
